@@ -55,16 +55,17 @@ public class GuiAdminA extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtUser = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JTextField();
         btnIngresar1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        lblModCred = new javax.swing.JLabel();
         cbxOpcion = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JToggleButton();
         btnConfirmar = new javax.swing.JToggleButton();
+        rbtnModCred = new javax.swing.JRadioButton();
         btnSalir = new javax.swing.JToggleButton();
         btnLimpiar = new javax.swing.JToggleButton();
 
@@ -73,11 +74,9 @@ public class GuiAdminA extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setText("Consola");
-        jLabel4.setEnabled(false);
 
         txtConsola.setColumns(20);
         txtConsola.setRows(5);
-        txtConsola.setEnabled(false);
         jScrollPane1.setViewportView(txtConsola);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -86,11 +85,11 @@ public class GuiAdminA extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,9 +191,7 @@ public class GuiAdminA extends javax.swing.JFrame {
                     .addComponent(rbtnRol, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
@@ -214,7 +211,6 @@ public class GuiAdminA extends javax.swing.JFrame {
                         .addComponent(btnConfirmarCrud, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConfirmarCod, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76))))
         );
@@ -249,7 +245,7 @@ public class GuiAdminA extends javax.swing.JFrame {
                     .addComponent(rbtnApellidos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmarCrud)
@@ -262,66 +258,110 @@ public class GuiAdminA extends javax.swing.JFrame {
 
         jLabel1.setText("Administracion Servidor Control Salida y Entrada");
 
+        txtUser.setText("aaaaaaaa");
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("login");
+        lblUser.setText("login");
 
-        jLabel3.setText("Contraseña");
+        lblPass.setText("Contraseña");
+
+        txtPass.setText("aaaaaaaa");
 
         btnIngresar1.setText("Ingresar");
+        btnIngresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresar1ActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel9.setText("Modificar Credenciales");
-        jLabel9.setEnabled(false);
+        lblModCred.setText("Modificar Credenciales");
+        lblModCred.setEnabled(false);
 
         cbxOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Login", "Contraseña", "Login y Contraseña", " " }));
         cbxOpcion.setEnabled(false);
+        cbxOpcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxOpcionActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setEnabled(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.setEnabled(false);
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        rbtnModCred.setEnabled(false);
+        rbtnModCred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnModCredActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbxOpcion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbxOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConfirmar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnConfirmar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(rbtnModCred)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblModCred, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblModCred)
+                    .addComponent(rbtnModCred))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnConfirmar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         btnSalir.setText("Salir");
         btnSalir.setEnabled(false);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar Casillas ");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -332,24 +372,30 @@ public class GuiAdminA extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addComponent(btnLimpiar))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(58, 58, 58)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPass)
+                                    .addComponent(lblUser))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(67, 67, 67)
+                                        .addComponent(btnLimpiar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)))
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -357,31 +403,26 @@ public class GuiAdminA extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(lblUser)
                             .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnIngresar1)
                             .addComponent(btnSalir))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPass))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -391,11 +432,11 @@ public class GuiAdminA extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -403,12 +444,12 @@ public class GuiAdminA extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         pack();
@@ -417,7 +458,39 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
-
+     private void activarGenerales(){
+        txtConsola.setText("$ Opciones generales activadas");
+        txtUser.setEnabled(!true);
+        txtPass.setEnabled(!true);
+        lblUser.setText("login");
+        lblPass.setText("contraseña");
+        btnSalir.setEnabled(true);
+        btnCancelar.setSelected(false);
+        cbxOpcion.setEnabled(!true);
+        btnCancelar.setEnabled(!true);
+        btnConfirmar.setEnabled(!true);
+        rbtnModCred.setSelected(false);
+        btnLimpiar.setEnabled(!true);
+        //btnConUsuario.setEnabled(true);
+        txtUser.setText("");
+        txtPass.setText("");
+        rbtnModCred.setEnabled(true);
+        lblModCred.setEnabled(true);
+    
+    }
+    
+    private void desactivarGenerales(){
+        //btnConUsuario.setEnabled(!true);
+        btnIngresar1.setEnabled(true);
+        btnSalir.setEnabled(false);
+        btnSalir.setSelected(false);
+        btnLimpiar.setEnabled(true);
+        txtUser.setEnabled(true);
+        txtPass.setEnabled(true);
+        rbtnModCred.setEnabled(false);
+        lblModCred.setEnabled(false);
+    
+    }
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombresActionPerformed
@@ -429,6 +502,137 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
+
+    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
+        // TODO add your handling code here:
+         boolean flag=true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
+        txtConsola.setText("");
+         
+        if(txtUser.getText().equals("") || txtPass.getText().equals("") ){
+           
+            txtConsola.setText("$ Error el usuario o la contraseña no pueden ser vacios");
+            
+        }else{
+        
+            if(txtUser.getText().length()!=8 || txtPass.getText().length()!=8 ){
+                
+                txtConsola.setText("$ Error el usuario o la contraseña no puede tener un tamaño diferente a 8 caracteres"); 
+            }else{
+            
+                //consultar el usuario y contraseña en la flag;
+                if(flag==false){
+                    txtConsola.setText("$ Error usuario o contraseña no valido");
+                    
+                    txtUser.setText("");
+                    txtPass.setText("");
+                    
+                }else{// ingreso al sistema
+                   activarGenerales();
+                   btnIngresar1.setEnabled(false);
+                   txtConsola.setText("$ Ingreso al sistema exitoso!");
+                   
+                
+                }
+            }
+                
+        }
+            
+    }//GEN-LAST:event_btnIngresar1ActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        txtConsola.setText("$ Saliendo del sistema....");
+        desactivarGenerales();
+          
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void rbtnModCredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModCredActionPerformed
+     int opcion;
+        if(rbtnModCred.isSelected()){
+            btnSalir.setEnabled(false);
+            cbxOpcion.setEnabled(true);
+            btnCancelar.setEnabled(true);
+            btnConfirmar.setEnabled(true);
+            //btnConUsuario.setEnabled(!true);
+           
+            txtConsola.setText("$ Modificar Credenciales (Opciones generales desactivadas)\n  Ingrese las nuevas credenciales segun su seleccion \n  Presione confirmar para actualizar los datos \n  cancelar para deshacer el cambio");
+            btnLimpiar.setEnabled(true);  
+            
+            opcion=cbxOpcion.getSelectedIndex();
+            switch(opcion){
+                case 0:
+                    lblUser.setText("login (nuevo)");
+                    txtUser.setEnabled(true);
+                   
+                    break;
+                case 1:
+                    lblPass.setText("contraseña (nueva)");
+                    txtPass.setEnabled(true);
+                    txtUser.setEnabled(!true);
+                    break;
+                case 2:
+                    lblUser.setText("login (nuevo)");
+                    lblPass.setText("contraseña (nueva)");
+                    txtUser.setEnabled(true);
+                    txtPass.setEnabled(true);
+                    break;
+            }
+        
+        }else{
+            txtConsola.setText("");
+            txtConsola.setText("$ Opciones generales activadas");
+            activarGenerales();
+        
+        
+        }
+                              
+    }//GEN-LAST:event_rbtnModCredActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+      txtConsola.setText("");
+      //btnConUsuario.setEnabled(true);
+      activarGenerales();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+         // TODO add your handling code here
+        btnLimpiar.setSelected(false);
+        txtUser.setText("");
+        txtPass.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
+        // TODO add your handling code here:
+        int opcion;
+        opcion=cbxOpcion.getSelectedIndex();
+            switch(opcion){
+                case 0:
+                    lblUser.setText("login (nuevo)");
+                    txtUser.setEnabled(true);
+                    txtPass.setEnabled(!true);
+                   
+                    break;
+                case 1:
+                    lblPass.setText("contraseña (nueva)");
+                    txtPass.setEnabled(true);
+                    txtUser.setEnabled(!true);
+                    break;
+                case 2:
+                    lblUser.setText("login (nuevo)");
+                    lblPass.setText("contraseña (nueva)");
+                    txtUser.setEnabled(true);
+                    txtPass.setEnabled(true);
+                    break;
+            }
+    }//GEN-LAST:event_cbxOpcionActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+        txtUser.setText("");
+        txtPass.setText("");
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,14 +685,11 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxOpcion;
     private javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -497,8 +698,12 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblModCred;
+    private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JRadioButton rbtnApellidos;
     private javax.swing.JRadioButton rbtnCodigo;
+    private javax.swing.JRadioButton rbtnModCred;
     private javax.swing.JRadioButton rbtnNombres;
     private javax.swing.JRadioButton rbtnRol;
     private javax.swing.JTextField txtApellidos;
