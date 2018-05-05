@@ -385,7 +385,6 @@ public class GuiAdminB extends javax.swing.JFrame {
         // TODO add your handling code here:
         int opcion;
         if (rbtnModCred.isSelected()) {
-            //btnSalir.setEnabled(false);
             cbxOpcion.setEnabled(true);
             btnCancelar.setEnabled(true);
             btnConfirmar.setEnabled(true);

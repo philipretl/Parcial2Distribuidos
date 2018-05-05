@@ -62,8 +62,18 @@ public class GuiCliente extends javax.swing.JFrame {
         jLabel6.setText("Codigo");
 
         btnCancelarS.setText("Cancelar");
+        btnCancelarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarSActionPerformed(evt);
+            }
+        });
 
         btnConfirmarS.setText("Confirmar");
+        btnConfirmarS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarSActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -114,6 +124,11 @@ public class GuiCliente extends javax.swing.JFrame {
         jLabel5.setText("Codigo");
 
         btnCancelarI.setText("Cancelar");
+        btnCancelarI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarIActionPerformed(evt);
+            }
+        });
 
         btnConfirmarI.setText("Confirmar");
 
@@ -244,6 +259,22 @@ public class GuiCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarIActionPerformed
+        // TODO add your handling code here:
+        txtCodigoI.setText("");
+        btnCancelarI.setSelected(false);
+    }//GEN-LAST:event_btnCancelarIActionPerformed
+
+    private void btnCancelarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarSActionPerformed
+        // TODO add your handling code here:
+          txtCodigoS.setText("");
+          btnCancelarS.setSelected(false);
+    }//GEN-LAST:event_btnCancelarSActionPerformed
+
+    private void btnConfirmarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmarSActionPerformed
 
     /**
      * @param args the command line arguments

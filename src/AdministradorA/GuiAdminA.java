@@ -10,14 +10,17 @@ package AdministradorA;
  * @author philipretl
  */
 public class GuiAdminA extends javax.swing.JFrame {
-
+    //LoginA login;
     /**
      * Creates new form GuiCliente
      */
     public GuiAdminA() {
-        initComponents();
+          //login = new LoginA(this);
+          
+          initComponents();
+          //this.setVisible(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -454,7 +457,11 @@ public class GuiAdminA extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void iniciar(){
+     this.setVisible(true);
+    }
+    
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
@@ -562,11 +569,9 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void rbtnModCredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModCredActionPerformed
      int opcion;
         if(rbtnModCred.isSelected()){
-            //btnSalir.setEnabled(false);
             cbxOpcion.setEnabled(true);
             btnCancelar.setEnabled(true);
             btnConfirmar.setEnabled(true);
-            //btnConUsuario.setEnabled(!true);
             desactivarGenerales();
             
             txtConsola.setText("$ Modificar Credenciales (Opciones generales desactivadas)\n  Ingrese las nuevas credenciales segun su seleccion \n  Presione confirmar para actualizar los datos \n  cancelar para deshacer el cambio");
@@ -686,6 +691,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GuiAdminA().setVisible(true);
+                //new LoginA(new GuiAdminA()).setVisible(true);
             }
         });
     }
