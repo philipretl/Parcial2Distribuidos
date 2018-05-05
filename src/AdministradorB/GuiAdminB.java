@@ -295,8 +295,8 @@ public class GuiAdminB extends javax.swing.JFrame {
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
-    
-    private void activarGenerales(){
+
+    private void activarGenerales() {
         txtConsola.setText("$ Opciones generales activadas");
         txtUser.setEnabled(!true);
         txtPass.setEnabled(!true);
@@ -314,61 +314,57 @@ public class GuiAdminB extends javax.swing.JFrame {
         txtPass.setText("");
         rbtnModCred.setEnabled(true);
         lblModCred.setEnabled(true);
-    
+
     }
-    
-    private void desactivarGenerales(){
+
+    private void desactivarGenerales() {
         btnConUsuario.setEnabled(!true);
-        btnIngresar.setEnabled(true);
+        // btnIngresar.setEnabled(true);
         btnSalir.setEnabled(false);
         btnSalir.setSelected(false);
-        btnLimpiar.setEnabled(true);
-        txtUser.setEnabled(true);
-        txtPass.setEnabled(true);
+        btnLimpiar.setEnabled(!true);
+        txtUser.setEnabled(!true);
+        txtPass.setEnabled(!true);
         rbtnModCred.setEnabled(false);
         lblModCred.setEnabled(false);
-    
+
     }
-    
+     private void activarIniciales(){
+        txtUser.setEnabled(true);
+        txtPass.setEnabled(true);
+        btnIngresar.setEnabled(true);
+        btnLimpiar.setEnabled(true);
+    }
+
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        boolean flag=true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
+        boolean flag = true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
         txtConsola.setText("");
-         
-        if(txtUser.getText().equals("") || txtPass.getText().equals("") ){
-           
+
+        if (txtUser.getText().equals("") || txtPass.getText().equals("")) {
+
             txtConsola.setText("$ Error el usuario o la contraseña no pueden ser vacios");
-            
-        }else{
-        
-            if(txtUser.getText().length()!=8 || txtPass.getText().length()!=8 ){
-                
-                txtConsola.setText("$ Error el usuario o la contraseña no puede tener un tamaño diferente a 8 caracteres"); 
-            }else{
-            
-                //consultar el usuario y contraseña en la flag;
-                if(flag==false){
-                    txtConsola.setText("$ Error usuario o contraseña no valido");
-                    
-                    txtUser.setText("");
-                    txtPass.setText("");
-                    
-                }else{// ingreso al sistema
-                   activarGenerales();
-                   btnIngresar.setEnabled(false);
-                   txtConsola.setText("$ Ingreso al sistema exitoso!");
-                   
-                
-                }
-            }
-                
+
+        } else if (txtUser.getText().length() != 8 || txtPass.getText().length() != 8) {
+
+            txtConsola.setText("$ Error el usuario o la contraseña no puede tener un tamaño diferente a 8 caracteres");
+        } else //consultar el usuario y contraseña en la flag;
+        if (flag == false) {
+            txtConsola.setText("$ Error usuario o contraseña no valido");
+
+            txtUser.setText("");
+            txtPass.setText("");
+
+        } else {// ingreso al sistema
+            activarGenerales();
+            btnIngresar.setEnabled(false);
+            txtConsola.setText("$ Ingreso al sistema exitoso!");
+
         }
-        
-            
-        
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
-    
- 
-    
+
+
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here
         btnLimpiar.setSelected(false);
@@ -380,31 +376,35 @@ public class GuiAdminB extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtConsola.setText("$ Saliendo del sistema....");
         // salir del sistema 
-       desactivarGenerales();
-        
+        desactivarGenerales();
+        activarIniciales();
+
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void rbtnModCredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModCredActionPerformed
         // TODO add your handling code here:
         int opcion;
-        if(rbtnModCred.isSelected()){
-            btnSalir.setEnabled(false);
+        if (rbtnModCred.isSelected()) {
+            //btnSalir.setEnabled(false);
             cbxOpcion.setEnabled(true);
             btnCancelar.setEnabled(true);
             btnConfirmar.setEnabled(true);
             btnConUsuario.setEnabled(!true);
-           
+            desactivarGenerales();
+
             txtConsola.setText("$ Modificar Credenciales (Opciones generales desactivadas)\n  Ingrese las nuevas credenciales segun su seleccion \n  Presione confirmar para actualizar los datos \n  cancelar para deshacer el cambio");
-            btnLimpiar.setEnabled(true);  
-            
-            opcion=cbxOpcion.getSelectedIndex();
-            switch(opcion){
+            btnLimpiar.setEnabled(true);
+
+            opcion = cbxOpcion.getSelectedIndex();
+            switch (opcion) {
                 case 0:
                     lblUser.setText("login (nuevo)");
+                    lblPass.setText("contraseña");
                     txtUser.setEnabled(true);
-                   
+                    txtPass.setEnabled(!true);
                     break;
                 case 1:
+                    lblUser.setText("login");
                     lblPass.setText("contraseña (nueva)");
                     txtPass.setEnabled(true);
                     txtUser.setEnabled(!true);
@@ -416,47 +416,48 @@ public class GuiAdminB extends javax.swing.JFrame {
                     txtPass.setEnabled(true);
                     break;
             }
-        
-        }else{
+
+        } else {
             txtConsola.setText("");
             txtConsola.setText("$ Opciones generales activadas");
             activarGenerales();
-        
-        
+
         }
     }//GEN-LAST:event_rbtnModCredActionPerformed
-    
+
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         txtConsola.setText("");
         btnConUsuario.setEnabled(true);
         activarGenerales();
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
         // TODO add your handling code here:
         int opcion;
-        opcion=cbxOpcion.getSelectedIndex();
-            switch(opcion){
-                case 0:
-                    lblUser.setText("login (nuevo)");
-                    txtUser.setEnabled(true);
-                    txtPass.setEnabled(!true);
-                   
-                    break;
-                case 1:
-                    lblPass.setText("contraseña (nueva)");
-                    txtPass.setEnabled(true);
-                    txtUser.setEnabled(!true);
-                    break;
-                case 2:
-                    lblUser.setText("login (nuevo)");
-                    lblPass.setText("contraseña (nueva)");
-                    txtUser.setEnabled(true);
-                    txtPass.setEnabled(true);
-                    break;
-            }
+        opcion = cbxOpcion.getSelectedIndex();
+        switch (opcion) {
+            case 0:
+                lblUser.setText("login (nuevo)");
+                lblPass.setText("contraseña ");
+                txtUser.setEnabled(true);
+                txtPass.setEnabled(!true);
+
+                break;
+            case 1:
+                lblUser.setText("login");
+                lblPass.setText("contraseña (nueva)");
+                txtPass.setEnabled(true);
+                txtUser.setEnabled(!true);
+                break;
+            case 2:
+                lblUser.setText("login (nuevo)");
+                lblPass.setText("contraseña (nueva)");
+                txtUser.setEnabled(true);
+                txtPass.setEnabled(true);
+                break;
+        }
     }//GEN-LAST:event_cbxOpcionActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed

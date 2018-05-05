@@ -32,9 +32,6 @@ public class GuiAdminA extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtConsola = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
-        btnIngresarUsua = new javax.swing.JButton();
-        btnModificarUser = new javax.swing.JButton();
-        btnEliminarUser = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -51,6 +48,9 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnNombres = new javax.swing.JRadioButton();
         rbtnApellidos = new javax.swing.JRadioButton();
         rbtnRol = new javax.swing.JRadioButton();
+        rbtnIngresarUsu = new javax.swing.JRadioButton();
+        rbtnModificarUsu = new javax.swing.JRadioButton();
+        rbtnEliminarUsu = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -103,15 +103,6 @@ public class GuiAdminA extends javax.swing.JFrame {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        btnIngresarUsua.setText("Ingresar Usuario");
-        btnIngresarUsua.setEnabled(false);
-
-        btnModificarUser.setText("Modificar Usuario");
-        btnModificarUser.setEnabled(false);
-
-        btnEliminarUser.setText("Eliminar Usuario");
-        btnEliminarUser.setEnabled(false);
 
         jLabel5.setText("Codigo");
         jLabel5.setEnabled(false);
@@ -166,18 +157,27 @@ public class GuiAdminA extends javax.swing.JFrame {
 
         rbtnRol.setEnabled(false);
 
+        rbtnIngresarUsu.setText("Ingresar Usuario");
+        rbtnIngresarUsu.setEnabled(false);
+
+        rbtnModificarUsu.setText("Modificar Usuario");
+        rbtnModificarUsu.setEnabled(false);
+
+        rbtnEliminarUsu.setText("Eliminar Usuario");
+        rbtnEliminarUsu.setEnabled(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnIngresarUsua, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModificarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(btnEliminarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(44, 44, 44)
+                .addComponent(rbtnIngresarUsu)
+                .addGap(43, 43, 43)
+                .addComponent(rbtnModificarUsu)
+                .addGap(49, 49, 49)
+                .addComponent(rbtnEliminarUsu)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jSeparator3)
                 .addContainerGap())
@@ -217,11 +217,11 @@ public class GuiAdminA extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresarUsua)
-                    .addComponent(btnModificarUser)
-                    .addComponent(btnEliminarUser))
+                    .addComponent(rbtnIngresarUsu)
+                    .addComponent(rbtnModificarUsu)
+                    .addComponent(rbtnEliminarUsu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -449,7 +449,7 @@ public class GuiAdminA extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         pack();
@@ -476,20 +476,33 @@ public class GuiAdminA extends javax.swing.JFrame {
         txtPass.setText("");
         rbtnModCred.setEnabled(true);
         lblModCred.setEnabled(true);
+        rbtnIngresarUsu.setEnabled(true);
+        rbtnModificarUsu.setEnabled(true);
+        rbtnEliminarUsu.setEnabled(true);
     
     }
     
     private void desactivarGenerales(){
         //btnConUsuario.setEnabled(!true);
-        btnIngresar1.setEnabled(true);
+        //btnIngresar1.setEnabled(true);
         btnSalir.setEnabled(false);
         btnSalir.setSelected(false);
-        btnLimpiar.setEnabled(true);
-        txtUser.setEnabled(true);
-        txtPass.setEnabled(true);
+        btnLimpiar.setEnabled(!true);
+        txtUser.setEnabled(!true);
+        txtPass.setEnabled(!true);
         rbtnModCred.setEnabled(false);
         lblModCred.setEnabled(false);
+        rbtnIngresarUsu.setEnabled(false);
+        rbtnModificarUsu.setEnabled(false);
+        rbtnEliminarUsu.setEnabled(false);
     
+    }
+    
+    private void activarIniciales(){
+        txtUser.setEnabled(true);
+        txtPass.setEnabled(true);
+        btnIngresar1.setEnabled(true);
+        btnLimpiar.setEnabled(true);
     }
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
@@ -541,30 +554,35 @@ public class GuiAdminA extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         txtConsola.setText("$ Saliendo del sistema....");
-        desactivarGenerales();
+        desactivarGenerales();  
+        activarIniciales();
           
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void rbtnModCredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModCredActionPerformed
      int opcion;
         if(rbtnModCred.isSelected()){
-            btnSalir.setEnabled(false);
+            //btnSalir.setEnabled(false);
             cbxOpcion.setEnabled(true);
             btnCancelar.setEnabled(true);
             btnConfirmar.setEnabled(true);
             //btnConUsuario.setEnabled(!true);
-           
+            desactivarGenerales();
+            
             txtConsola.setText("$ Modificar Credenciales (Opciones generales desactivadas)\n  Ingrese las nuevas credenciales segun su seleccion \n  Presione confirmar para actualizar los datos \n  cancelar para deshacer el cambio");
             btnLimpiar.setEnabled(true);  
             
             opcion=cbxOpcion.getSelectedIndex();
             switch(opcion){
-                case 0:
+               case 0:
                     lblUser.setText("login (nuevo)");
+                    lblPass.setText("contraseña");
                     txtUser.setEnabled(true);
+                    txtPass.setEnabled(!true);
                    
                     break;
                 case 1:
+                    lblUser.setText("login");
                     lblPass.setText("contraseña (nueva)");
                     txtPass.setEnabled(true);
                     txtUser.setEnabled(!true);
@@ -610,11 +628,13 @@ public class GuiAdminA extends javax.swing.JFrame {
             switch(opcion){
                 case 0:
                     lblUser.setText("login (nuevo)");
+                    lblPass.setText("contraseña");
                     txtUser.setEnabled(true);
                     txtPass.setEnabled(!true);
                    
                     break;
                 case 1:
+                    lblUser.setText("login");
                     lblPass.setText("contraseña (nueva)");
                     txtPass.setEnabled(true);
                     txtUser.setEnabled(!true);
@@ -675,12 +695,9 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnConfirmar;
     private javax.swing.JToggleButton btnConfirmarCod;
     private javax.swing.JToggleButton btnConfirmarCrud;
-    private javax.swing.JButton btnEliminarUser;
     private javax.swing.JButton btnIngresar1;
-    private javax.swing.JButton btnIngresarUsua;
     private javax.swing.JToggleButton btnLimpiar;
     private javax.swing.JToggleButton btnLimpiarCrud;
-    private javax.swing.JButton btnModificarUser;
     private javax.swing.JToggleButton btnSalir;
     private javax.swing.JComboBox<String> cbxOpcion;
     private javax.swing.JComboBox<String> cbxRol;
@@ -703,7 +720,10 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JLabel lblUser;
     private javax.swing.JRadioButton rbtnApellidos;
     private javax.swing.JRadioButton rbtnCodigo;
+    private javax.swing.JRadioButton rbtnEliminarUsu;
+    private javax.swing.JRadioButton rbtnIngresarUsu;
     private javax.swing.JRadioButton rbtnModCred;
+    private javax.swing.JRadioButton rbtnModificarUsu;
     private javax.swing.JRadioButton rbtnNombres;
     private javax.swing.JRadioButton rbtnRol;
     private javax.swing.JTextField txtApellidos;

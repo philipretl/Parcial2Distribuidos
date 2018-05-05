@@ -47,7 +47,7 @@
                   <Component id="jPanel3" max="32767" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,13 +126,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="btnIngresarUsua" min="-2" pref="109" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="rbtnIngresarUsu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="rbtnModificarUsu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="rbtnEliminarUsu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnModificarUser" min="-2" pref="127" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                  <Component id="btnEliminarUser" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jSeparator3" max="32767" attributes="0"/>
@@ -185,11 +185,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnIngresarUsua" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnModificarUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnEliminarUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtnIngresarUsu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtnModificarUsu" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtnEliminarUsu" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
@@ -230,24 +230,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnIngresarUsua">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ingresar Usuario"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnModificarUser">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar Usuario"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnEliminarUser">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar Usuario"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -348,6 +330,24 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnRol">
           <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtnIngresarUsu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingresar Usuario"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtnModificarUsu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar Usuario"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtnEliminarUsu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar Usuario"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
