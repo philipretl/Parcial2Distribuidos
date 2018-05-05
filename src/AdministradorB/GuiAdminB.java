@@ -5,6 +5,7 @@
  */
 package AdministradorB;
 
+
 import cliente.*;
 
 /**
@@ -12,12 +13,15 @@ import cliente.*;
  * @author philipretl
  */
 public class GuiAdminB extends javax.swing.JFrame {
-
+    ConexionB loginB;
     /**
      * Creates new form GuiCliente
      */
     public GuiAdminB() {
         initComponents();
+        initComponents();        
+        loginB= new ConexionB(this);  
+        loginB.setVisible(true);
     }
 
     /**
@@ -496,7 +500,7 @@ public class GuiAdminB extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiAdminB().setVisible(true);
+                new GuiAdminB().setVisible(false);
             }
         });
     }

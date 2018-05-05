@@ -5,21 +5,25 @@
  */
 package AdministradorA;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author philipretl
  */
 public class GuiAdminA extends javax.swing.JFrame {
-    //LoginA login;
+    ConexionA loginA;
     /**
      * Creates new form GuiCliente
      */
     public GuiAdminA() {
-          //login = new LoginA(this);
-          
-          initComponents();
-          //this.setVisible(false);
+        initComponents();        
+        loginA= new ConexionA(this);  
+        loginA.setVisible(true);
+        
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -458,9 +462,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public void iniciar(){
-     this.setVisible(true);
-    }
+    
     
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
@@ -525,7 +527,8 @@ public class GuiAdminA extends javax.swing.JFrame {
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         // TODO add your handling code here:
-         boolean flag=true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
+        
+        boolean flag=true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
         txtConsola.setText("");
          
         if(txtUser.getText().equals("") || txtPass.getText().equals("") ){
@@ -690,12 +693,13 @@ public class GuiAdminA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiAdminA().setVisible(true);
-                //new LoginA(new GuiAdminA()).setVisible(true);
+               
+                new  GuiAdminA().setVisible(false);
+              
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnConfirmar;
