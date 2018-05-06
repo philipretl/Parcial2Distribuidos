@@ -14,5 +14,5 @@ import java.rmi.RemoteException;
  */
 public interface GestionClienteInt extends Remote{
     int ingresoUsuario(String codigo) throws RemoteException;
-    boolean salidaUsuario(String codigo) throws RemoteException;
+    int salidaUsuario(String codigo) throws RemoteException;
 }
