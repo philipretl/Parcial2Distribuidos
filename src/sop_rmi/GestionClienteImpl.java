@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Mauricio
  */
 public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt {
+    
 
     @Override
     public boolean IngresoUsuario(String codigo) throws RemoteException {
