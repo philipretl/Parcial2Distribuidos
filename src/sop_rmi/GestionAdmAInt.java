@@ -8,6 +8,7 @@ package sop_rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import AdministradorA.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,5 +21,6 @@ public interface GestionAdmAInt extends Remote{
     boolean BorrarUsuario(String codigo) throws RemoteException;
     UsuarioA soliciarUsuario(String codigo) throws RemoteException;
     int buscarUsuario(String codigo) throws RemoteException;
+    ArrayList<UsuarioA> consultarUsuarios() throws RemoteException;
     boolean modificarCredenciales(String antiguo,String login, String pass, int opcion) throws RemoteException;
 }

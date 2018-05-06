@@ -8,6 +8,7 @@ package AdministradorA;
 import sop_rmi.GestionAdmAImpl;
 import java.awt.BorderLayout;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -29,6 +30,11 @@ public class GuiAdminA extends javax.swing.JFrame {
         loginA= new ConexionA(this);  
         loginA.setVisible(true);
         adminA = new AdministradorA();
+        //radiobuttons modificar
+        rbtnCodigo.setVisible(!true);
+        rbtnNombres.setVisible(!true);
+        rbtnApellidos.setVisible(!true);
+        rbtnRol.setVisible(!true);
     }
     
     
@@ -47,13 +53,13 @@ public class GuiAdminA extends javax.swing.JFrame {
         txtConsola = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblApellidos = new javax.swing.JLabel();
         txtApellidos = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblRol = new javax.swing.JLabel();
         cbxRol = new javax.swing.JComboBox<>();
         btnConfirmarCod = new javax.swing.JToggleButton();
         btnConfirmarCrud = new javax.swing.JToggleButton();
@@ -121,8 +127,8 @@ public class GuiAdminA extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel5.setText("Codigo");
-        jLabel5.setEnabled(false);
+        lblCodigo.setText("Codigo");
+        lblCodigo.setEnabled(false);
 
         txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -131,8 +137,8 @@ public class GuiAdminA extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Nombres");
-        jLabel6.setEnabled(false);
+        lblNombre.setText("Nombres");
+        lblNombre.setEnabled(false);
 
         txtNombres.setEnabled(false);
         txtNombres.addActionListener(new java.awt.event.ActionListener() {
@@ -141,8 +147,8 @@ public class GuiAdminA extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Apellidos");
-        jLabel7.setEnabled(false);
+        lblApellidos.setText("Apellidos");
+        lblApellidos.setEnabled(false);
 
         txtApellidos.setEnabled(false);
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -151,8 +157,8 @@ public class GuiAdminA extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Rol");
-        jLabel8.setEnabled(false);
+        lblRol.setText("Rol");
+        lblRol.setEnabled(false);
 
         cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrativo", "Profesor", "Estudiante" }));
         cbxRol.setEnabled(false);
@@ -165,6 +171,11 @@ public class GuiAdminA extends javax.swing.JFrame {
 
         btnLimpiarCrud.setText("Limpiar");
         btnLimpiarCrud.setEnabled(false);
+        btnLimpiarCrud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCrudActionPerformed(evt);
+            }
+        });
 
         rbtnCodigo.setEnabled(false);
 
@@ -173,15 +184,35 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnApellidos.setEnabled(false);
 
         rbtnRol.setEnabled(false);
+        rbtnRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnRolActionPerformed(evt);
+            }
+        });
 
         rbtnIngresarUsu.setText("Ingresar Usuario");
         rbtnIngresarUsu.setEnabled(false);
+        rbtnIngresarUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnIngresarUsuActionPerformed(evt);
+            }
+        });
 
         rbtnModificarUsu.setText("Modificar Usuario");
         rbtnModificarUsu.setEnabled(false);
+        rbtnModificarUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnModificarUsuActionPerformed(evt);
+            }
+        });
 
         rbtnEliminarUsu.setText("Eliminar Usuario");
         rbtnEliminarUsu.setEnabled(false);
+        rbtnEliminarUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEliminarUsuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -208,12 +239,12 @@ public class GuiAdminA extends javax.swing.JFrame {
                     .addComponent(rbtnRol, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
+                    .addComponent(lblRol)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
+                            .addComponent(lblCodigo)
+                            .addComponent(lblNombre)
+                            .addComponent(lblApellidos)
                             .addComponent(txtApellidos)
                             .addComponent(txtNombres)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,33 +273,39 @@ public class GuiAdminA extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblCodigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmarCod)
                     .addComponent(rbtnCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtnNombres))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(lblApellidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtnApellidos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfirmarCrud)
-                    .addComponent(btnLimpiarCrud)
-                    .addComponent(rbtnRol))
-                .addContainerGap())
+                .addComponent(lblRol)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnConfirmarCrud)
+                            .addComponent(btnLimpiarCrud))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbtnRol))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel1.setBackground(new java.awt.Color(71, 160, 249));
@@ -540,6 +577,24 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnIngresarUsu.setEnabled(false);
         rbtnModificarUsu.setEnabled(false);
         rbtnEliminarUsu.setEnabled(false);
+        
+        btnConfirmarCrud.setEnabled(!true);
+        btnConfirmarCod.setEnabled(!true);
+        txtConsola.setText("");
+        
+                
+        lblCodigo.setEnabled(!true);
+        txtCodigo.setEnabled(!true);
+        
+        lblNombre.setEnabled(!true);
+        lblApellidos.setEnabled(!true);
+        lblRol.setEnabled(!true);
+        
+        txtNombres.setEnabled(!true);
+        txtApellidos.setEnabled(!true);
+        cbxRol.setEnabled(!true);
+        
+        btnLimpiarCrud.setEnabled(!true);
     
     }
     
@@ -548,6 +603,15 @@ public class GuiAdminA extends javax.swing.JFrame {
         txtPass.setEnabled(true);
         btnIngresar1.setEnabled(true);
         btnLimpiar.setEnabled(true);
+        
+        //radiobuttons modificar
+        rbtnCodigo.setVisible(!true);
+        rbtnNombres.setVisible(!true);
+        rbtnApellidos.setVisible(!true);
+        rbtnRol.setVisible(!true);
+        
+        // segundo panel
+        
     }
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
@@ -760,6 +824,112 @@ public class GuiAdminA extends javax.swing.JFrame {
         txtPass.setText("");
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
+    private void rbtnIngresarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnIngresarUsuActionPerformed
+        // TODO add your handling code here:
+        txtConsola.setText(concatenarCodigos());
+        rbtnEliminarUsu.setSelected(false);
+        rbtnModificarUsu.setSelected(false);
+        
+        lblCodigo.setEnabled(true);
+        lblNombre.setEnabled(true);
+        lblApellidos.setEnabled(true);
+        lblRol.setEnabled(true);
+        
+        //radiobuttons
+        rbtnCodigo.setVisible(!true);
+        rbtnNombres.setVisible(!true);
+        rbtnApellidos.setVisible(!true);
+        rbtnRol.setVisible(!true);
+        
+        txtCodigo.setEnabled(true);
+        txtNombres.setEnabled(true);
+        txtApellidos.setEnabled(true);
+        cbxRol.setEnabled(true);
+        
+        btnConfirmarCod.setEnabled(!true);
+        btnLimpiarCrud.setEnabled(true);
+        btnConfirmarCrud.setEnabled(true);
+        
+        
+    }//GEN-LAST:event_rbtnIngresarUsuActionPerformed
+
+    private void rbtnModificarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModificarUsuActionPerformed
+        // TODO add your handling code here:
+        
+        btnConfirmarCrud.setEnabled(!true);
+        btnConfirmarCod.setEnabled(true);
+        txtConsola.setText(concatenarCodigos());
+        
+        rbtnIngresarUsu.setSelected(false);
+        rbtnEliminarUsu.setSelected(false);
+        
+        lblCodigo.setEnabled(true);
+        txtCodigo.setEnabled(true);
+        
+        lblNombre.setEnabled(!true);
+        lblApellidos.setEnabled(!true);
+        lblRol.setEnabled(!true);
+        
+        txtNombres.setEnabled(!true);
+        txtApellidos.setEnabled(!true);
+        cbxRol.setEnabled(!true);
+        
+         //radiobuttons
+        rbtnCodigo.setVisible(true);
+        rbtnNombres.setVisible(true);
+        rbtnApellidos.setVisible(true);
+        rbtnRol.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_rbtnModificarUsuActionPerformed
+
+    private void rbtnEliminarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarUsuActionPerformed
+        // TODO add your handling code here:
+        txtConsola.setText(concatenarCodigos());
+        btnConfirmarCod.setEnabled(true);
+        rbtnIngresarUsu.setSelected(false);
+        rbtnModificarUsu.setSelected(false);
+        
+        //radiobuttons
+        rbtnCodigo.setVisible(!true);
+        rbtnNombres.setVisible(!true);
+        rbtnApellidos.setVisible(!true);
+        rbtnRol.setVisible(!true);
+        
+        btnConfirmarCrud.setEnabled(!true);
+    }//GEN-LAST:event_rbtnEliminarUsuActionPerformed
+    
+    private String concatenarCodigos() {
+        String cadena="$ Codigos\n";
+        ArrayList<UsuarioA> lista=null;
+        try {
+            lista=srvA.consultarUsuarios();
+        } catch (RemoteException ex) {
+            Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        for (int i = 0; i <lista.size(); i++) {
+          cadena=cadena + lista.get(i).getCodigo()+"\n";   
+        }
+       
+       return cadena;
+    
+    }
+    
+    
+    
+    private void rbtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnRolActionPerformed
+
+    private void btnLimpiarCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCrudActionPerformed
+        // TODO add your handling code here:
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");    
+    }//GEN-LAST:event_btnLimpiarCrudActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -812,10 +982,6 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -824,8 +990,12 @@ public class GuiAdminA extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblModCred;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblRol;
     private javax.swing.JLabel lblUser;
     private javax.swing.JRadioButton rbtnApellidos;
     private javax.swing.JRadioButton rbtnCodigo;

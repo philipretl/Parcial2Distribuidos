@@ -84,6 +84,7 @@ public class ConexionA extends javax.swing.JFrame {
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
+        txtIp.setText("localhost");
         txtIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIpActionPerformed(evt);
@@ -91,6 +92,8 @@ public class ConexionA extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Puerto del Rmi.Registry");
+
+        txtPuerto.setText("2020");
 
         btnConectar.setBackground(new java.awt.Color(106, 160, 213));
         btnConectar.setText("Conectar");

@@ -161,5 +161,10 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
         return flag;
     
     }
+
+    @Override
+    public ArrayList<UsuarioA> consultarUsuarios() throws RemoteException {
+        return usuariosA;
+    }
     
 }

@@ -62,7 +62,7 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
     }
 
     @Override
-    public ArrayList<UsuarioB> ConsultarUsuariosIngresados() throws RemoteException {
+    public ArrayList<UsuarioB> ConsultarUsuariosIngresados() {
         return usuariosB;
     }
 
