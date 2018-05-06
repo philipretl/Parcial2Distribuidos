@@ -7,14 +7,18 @@ package sop_rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import AdministradorA.*;
 
 /**
  *
  * @author Mauricio
  */
 public interface GestionAdmAInt extends Remote{
-    boolean AccesoAdministrador(String login, String clave) throws RemoteException;
-    boolean RegistrarUsuario(String nombre,String apellido, String rol,String codigo) throws RemoteException;
-    boolean ModificarUsuario(String codigo) throws RemoteException;
+    boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException;
+    boolean RegistrarUsuario(UsuarioA user) throws RemoteException;
+    boolean ModificarUsuario(UsuarioA user) throws RemoteException;
     boolean BorrarUsuario(String codigo) throws RemoteException;
+    UsuarioA soliciarUsuario(String codigo) throws RemoteException;
+    int buscarUsuario(String codigo) throws RemoteException;
+    boolean modificarCredenciales(String antiguo,String login, String pass, int opcion) throws RemoteException;
 }

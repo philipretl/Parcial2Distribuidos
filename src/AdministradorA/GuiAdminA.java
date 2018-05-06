@@ -7,6 +7,9 @@ package AdministradorA;
 
 import sop_rmi.GestionAdmAImpl;
 import java.awt.BorderLayout;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import sop_rmi.*;
 
@@ -17,7 +20,7 @@ import sop_rmi.*;
 public class GuiAdminA extends javax.swing.JFrame {
     ConexionA loginA;
     GestionAdmAInt srvA;
-    GestionAdmAImpl adminA;
+    AdministradorA adminA;
     /**
      * Creates new form GuiCliente
      */
@@ -25,7 +28,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         initComponents();        
         loginA= new ConexionA(this);  
         loginA.setVisible(true);
-        
+        adminA = new AdministradorA();
     }
     
     
@@ -478,7 +481,7 @@ public class GuiAdminA extends javax.swing.JFrame {
 
             srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
             
-            srvA.AccesoAdministrador("hola", "me la pela");
+            
         }catch(Exception e){
             flag = false;
             System.out.println("No se pudo registrar la conexion...");
@@ -554,7 +557,7 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         // TODO add your handling code here:
         
-        boolean flag=true;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
+        boolean flag=false;// esta bandera es la que guarda si es verdadero o no el logi y la contraseña
         txtConsola.setText("");
          
         if(txtUser.getText().equals("") || txtPass.getText().equals("") ){
@@ -567,8 +570,15 @@ public class GuiAdminA extends javax.swing.JFrame {
                 
                 txtConsola.setText("$ Error el usuario o la contraseña no puede tener un tamaño diferente a 8 caracteres"); 
             }else{
-            
-                //consultar el usuario y contraseña en la flag;
+                adminA.setClave(txtUser.getText());
+                adminA.setLogin(txtPass.getText());
+                
+                try {
+                    flag=srvA.AccesoAdministrador(adminA);//consultar el usuario y contraseña en la flag;
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 if(flag==false){
                     txtConsola.setText("$ Error usuario o contraseña no valido");
                     
@@ -596,7 +606,9 @@ public class GuiAdminA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void rbtnModCredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModCredActionPerformed
-     int opcion;
+    int opcion;
+    
+     
         if(rbtnModCred.isSelected()){
             cbxOpcion.setEnabled(true);
             btnCancelar.setEnabled(true);
@@ -684,6 +696,10 @@ public class GuiAdminA extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
+        boolean flag=false;
+        
+        
+        
         txtUser.setText("");
         txtPass.setText("");
     }//GEN-LAST:event_btnConfirmarActionPerformed
