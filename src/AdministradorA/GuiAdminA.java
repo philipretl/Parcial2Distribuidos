@@ -468,14 +468,17 @@ public class GuiAdminA extends javax.swing.JFrame {
     
     public boolean conexion(String ip,String puerto){
         boolean flag=true;
+        
+        System.out.println("ip: "+ ip + "puerto: " + puerto );
+        
          try{
             int numPuertoRMIRegistry=0;
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = Integer.parseInt(puerto);
 
-            srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorGestionUsuarios");
+            srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
             
-            srvA.AccesoAdministrador("hola", ip);
+            srvA.AccesoAdministrador("hola", "me la pela");
         }catch(Exception e){
             flag = false;
             System.out.println("No se pudo registrar la conexion...");

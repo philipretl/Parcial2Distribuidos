@@ -187,7 +187,7 @@ public class ConexionSA extends javax.swing.JFrame {
         {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoUsuarios");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
       
 	} catch (Exception e)
         {
