@@ -5,11 +5,14 @@
  */
 package AdministradorA;
 
+import com.sun.org.apache.xml.internal.utils.SerializableLocatorImpl;
+import java.io.Serializable;
+
 /**
  *
  * @author Mauricio
  */
-public class AdministradorA {
+public class AdministradorA implements Serializable{
     
     private String login;
     private String clave;

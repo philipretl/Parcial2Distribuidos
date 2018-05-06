@@ -5,8 +5,10 @@
  */
 package AdministradorA;
 
+import sop_rmi.GestionAdmAImpl;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import sop_rmi.*;
 
 /**
  *
@@ -14,6 +16,8 @@ import javax.swing.JPanel;
  */
 public class GuiAdminA extends javax.swing.JFrame {
     ConexionA loginA;
+    GestionAdmAInt srvA;
+    GestionAdmAImpl adminA;
     /**
      * Creates new form GuiCliente
      */
@@ -462,6 +466,25 @@ public class GuiAdminA extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    public boolean conexion(String ip,String puerto){
+        boolean flag=true;
+         try{
+            int numPuertoRMIRegistry=0;
+            String direccionIpRMIRegistry=ip;
+            numPuertoRMIRegistry = Integer.parseInt(puerto);
+
+            srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorGestionUsuarios");
+            
+            srvA.AccesoAdministrador("hola", ip);
+        }catch(Exception e){
+            flag = false;
+            System.out.println("No se pudo registrar la conexion...");
+            System.out.println(e.getMessage());
+        } 
+    
+        return flag;
+    }
+    
     
     
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -699,6 +722,7 @@ public class GuiAdminA extends javax.swing.JFrame {
             }
         });
     }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCancelar;
