@@ -348,7 +348,7 @@ public class GuiAdminB extends javax.swing.JFrame {
         btnConfirmar.setEnabled(!true);
         rbtnModCred.setSelected(false);
         btnLimpiar.setEnabled(!true);
-        //btnConUsuario.setEnabled(true);
+        btnConsultar.setEnabled(true);
         txtUser.setText("");
         txtPass.setText("");
         rbtnModCred.setEnabled(true);
@@ -367,6 +367,7 @@ public class GuiAdminB extends javax.swing.JFrame {
         txtPass.setEnabled(!true);
         rbtnModCred.setEnabled(false);
         lblModCred.setEnabled(false);
+        btnConsultar.setEnabled(!true);
         
     
     }
