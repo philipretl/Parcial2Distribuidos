@@ -13,6 +13,6 @@ import java.rmi.RemoteException;
  * @author Mauricio
  */
 public interface GestionClienteInt extends Remote{
-    boolean IngresoUsuario(String codigo) throws RemoteException;
-    boolean SalidaUsuario(String codigo) throws RemoteException;
+    int ingresoUsuario(String codigo) throws RemoteException;
+    boolean salidaUsuario(String codigo) throws RemoteException;
 }

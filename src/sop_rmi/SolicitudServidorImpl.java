@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidorB;
+package sop_rmi;
 
 import AdministradorA.UsuarioA;
 import DAO.ImplTextoUsuarioA;
@@ -21,32 +21,27 @@ import sop_rmi.SolicitudServidorInt;
  */
 public class SolicitudServidorImpl extends UnicastRemoteObject implements SolicitudServidorInt{
 
-    private ArrayList<UsuarioA> usuarios;
 
     public SolicitudServidorImpl() throws RemoteException{
         super();
     }
     
-    
-    public void cargarUsuarios() throws IOException{
-        ImplTextoUsuarioA usuariosA=new ImplTextoUsuarioA();
-        usuarios=usuariosA.getUsuarios();
-    }
-    
     @Override
-    public boolean BuscarUsuario(String codigo) throws RemoteException {
-        boolean flag=false;
+    public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
+        UsuarioA usr = null;
+        ArrayList<UsuarioA> usuarios = new ArrayList<>();
+        ImplTextoUsuarioA usuariosA=new ImplTextoUsuarioA();
         try {
-            cargarUsuarios();
+            usuarios=usuariosA.getUsuarios();
         } catch (IOException ex) {
             Logger.getLogger(SolicitudServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for(int i=0;i<usuarios.size();i++){
-            if(codigo.equals(usuarios.get(i).getCodigo())){
-                flag=true;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if(usuarios.get(i).getCodigo().equals(codigo)){
+               usr=new UsuarioA(usuarios.get(i).getNombre(),usuarios.get(i).getApellidos(),usuarios.get(i).getRol(),usuarios.get(i).getCodigo());
             }
         }
-        return flag;
+        return usr;
     }
     
 }

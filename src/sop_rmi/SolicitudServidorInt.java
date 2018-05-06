@@ -5,6 +5,7 @@
  */
 package sop_rmi;
 
+import AdministradorA.UsuarioA;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -13,5 +14,5 @@ import java.rmi.RemoteException;
  * @author Mauricio
  */
 public interface SolicitudServidorInt extends Remote{
-    boolean BuscarUsuario(String codigo)throws RemoteException;    
+    UsuarioA soliciarUsuario(String codigo) throws RemoteException;    
 }
