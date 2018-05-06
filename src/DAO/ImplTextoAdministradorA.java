@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import AdministradorA.UsuarioA;
+import AdministradorA.AdministradorA;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,51 +19,47 @@ import java.util.ArrayList;
  *
  * @author Mauricio
  */
-public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
+public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
 
     @Override
-    public ArrayList<UsuarioA> getUsuarios() throws FileNotFoundException, IOException{
-        
-        ArrayList<UsuarioA> usuarios=new ArrayList<>();
-        UsuarioA usr;
+    public ArrayList<AdministradorA> getAdministradores() throws FileNotFoundException, IOException {
+        ArrayList<AdministradorA> administradores=new ArrayList<>();
+        AdministradorA adm;
         String cadena;
         
-        FileReader f = new FileReader("usuarios.txt");
+        FileReader f = new FileReader("administradoresA.txt");
         BufferedReader b = new BufferedReader(f);
         while((cadena = b.readLine())!=null) {
             String[] split=cadena.split("/");
-            usr=new UsuarioA(split[0],split[1],split[2],split[3]);
-            usuarios.add(usr);
+            adm=new AdministradorA(split[0],split[1]);
+            administradores.add(adm);
             //System.out.println(cadena);
         }
         b.close();
         
-        return usuarios;
+        return administradores;
     }
-        
 
     @Override
-    public void guardarUsuarios(ArrayList<UsuarioA> usuarios) throws IOException{
-        
-        File archivo = new File("usuarios.txt");
+    public void guardarAdministradores(ArrayList<AdministradorA> administradores) throws IOException {
+        File archivo = new File("administradoresA.txt");
         BufferedWriter bw;
         String linea;
         if(archivo.exists()) {
             bw = new BufferedWriter(new FileWriter(archivo));
-            for (int i = 0; i< usuarios.size(); i++) {
-                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+            for (int i = 0; i< administradores.size(); i++) {
+                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"/";
                 bw.write(linea);
             }
             
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
-            for (int i = 0; i< usuarios.size(); i++) {
-                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+            for (int i = 0; i< administradores.size(); i++) {
+                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"/";
                 bw.write(linea);
             }
         }
         bw.close();
     }
-
     
 }

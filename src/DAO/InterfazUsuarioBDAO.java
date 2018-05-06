@@ -5,7 +5,10 @@
  */
 package DAO;
 
+import AdministradorA.UsuarioA;
 import AdministradorB.UsuarioB;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +16,6 @@ import java.util.ArrayList;
  * @author Mauricio
  */
 public interface InterfazUsuarioBDAO {
-    public ArrayList<UsuarioB> getUsuarios();
-    public void guardarUsuario(UsuarioB usuario);
-    public void borrarUsuario(String codigo);
+    public ArrayList<UsuarioB> getUsuarios() throws FileNotFoundException, IOException;
+    public void guardarUsuarios(ArrayList<UsuarioB> usuarios) throws IOException;
 }
