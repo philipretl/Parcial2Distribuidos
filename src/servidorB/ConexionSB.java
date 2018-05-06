@@ -10,7 +10,6 @@ import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import servidorA.ServidorDeObjetos;
 import servidorA.UtilidadesRegistroS;
 import sop_rmi.GestionAdmAImpl;
 
@@ -19,7 +18,7 @@ import sop_rmi.GestionAdmAImpl;
  * @author philipretl
  */
 public class ConexionSB extends javax.swing.JFrame {
-    ServidorDeObjetos servObj;
+
     /**
      * Creates new form Login
      */
