@@ -131,6 +131,11 @@ public class GuiCliente extends javax.swing.JFrame {
         });
 
         btnConfirmarI.setText("Confirmar");
+        btnConfirmarI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarIActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -275,6 +280,10 @@ public class GuiCliente extends javax.swing.JFrame {
     private void btnConfirmarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarSActionPerformed
+
+    private void btnConfirmarIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmarIActionPerformed
 
     /**
      * @param args the command line arguments

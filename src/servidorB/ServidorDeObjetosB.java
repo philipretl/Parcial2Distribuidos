@@ -15,14 +15,14 @@ import sop_rmi.SolicitudServidorInt;
 public class ServidorDeObjetosB
     
 {
-    SolicitudServidorInt srvA;
+    static SolicitudServidorInt srvA;
     
     public static void main(String args[]) throws RemoteException
     {
                  
         
         String direccionIpRMIRegistry =  args[0]; 
-		int numPuertoRMIRegistry = Integer.parseInt(args[1]);		
+        int numPuertoRMIRegistry = Integer.parseInt(args[1]);		
      
       //  ServidorUsuariosImpl objRemoto = new ServidorUsuariosImpl();        
         
@@ -37,14 +37,15 @@ public class ServidorDeObjetosB
             System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
         }
         
+        conexionServidorA( args[0], Integer.parseInt(args[1]),codigo)
         
     }
     
-    public void conexionServidorA(){
+    public static void conexionServidorA(String ip,int puerto, String codigo) throws RemoteException{
         try{
             int numPuertoRMIRegistry=0;
-            String direccionIpRMIRegistry="localhost";
-            numPuertoRMIRegistry = 2023;
+            String direccionIpRMIRegistry=ip;
+            numPuertoRMIRegistry = puerto;
                             
             srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
                             
@@ -53,5 +54,7 @@ public class ServidorDeObjetosB
             System.out.println("No se pudo registrar la conexion...");
             System.out.println(e.getMessage());
         }
+        
+        boolean BuscarUsuario = srvA.BuscarUsuario(codigo);
     }
 }
