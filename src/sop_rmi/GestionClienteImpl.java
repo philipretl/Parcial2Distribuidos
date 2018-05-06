@@ -24,8 +24,8 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     
     //private int semaforo;
     private ArrayList<UsuarioB> usuarios;
-     static SolicitudServidorInt srvA;
-     String ip;
+    static SolicitudServidorInt srvA;
+    String ip;
     int puerto;
     
     public GestionClienteImpl(String ip,int puerto) throws RemoteException{
@@ -38,7 +38,11 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
 
     @Override
     public int ingresoUsuario(String codigo) throws RemoteException {
-        
+        try {
+            cargarUsuarios();
+        } catch (IOException ex) {
+            Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int retorno=0;
         UsuarioA usr = conexionServidorA(ip,puerto,codigo);
         UsuarioB usrb;
@@ -74,8 +78,43 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     }
 
     @Override
-    public boolean salidaUsuario(String codigo) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int salidaUsuario(String codigo) throws RemoteException {
+        try {
+            cargarUsuarios();
+        } catch (IOException ex) {
+            Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int retorno = 0;
+        int pos=-1;
+        
+        UsuarioA usr = conexionServidorA(ip,puerto,codigo);
+        if(usr==null){
+            retorno=1;
+        }else{
+            for (int i = 0; i < usuarios.size(); i++) {
+                if(usuarios.get(i).getCodigo().equals(codigo)){
+                    pos=i;
+                }
+            }
+        }
+        
+        if(pos!=-1){
+            usuarios.remove(pos);
+            ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
+            try {
+                atxt.guardarUsuarios(usuarios);
+            } catch (IOException ex) {
+                Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            retorno=3;
+        }else{
+            retorno=2;
+        }
+        
+        
+        return retorno;
     }
     
     public void cargarUsuarios() throws IOException{
@@ -97,6 +136,8 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
             System.out.println(e.getMessage());
         }
         
-        return usuario = srvA.soliciarUsuario(codigo);
+        usuario = srvA.soliciarUsuario(codigo);
+        
+        return usuario;
     }
 }

@@ -7,9 +7,14 @@ package sop_rmi;
 
 import AdministradorB.AdministradorB;
 import AdministradorB.UsuarioB;
+import DAO.ImplTextoAdministradorB;
+import DAO.ImplTextoUsuarioB;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,22 +23,28 @@ import java.util.ArrayList;
 public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdmBInt{
     ArrayList<AdministradorB> admins;
     ArrayList<UsuarioB> usuariosB;
+    ImplTextoUsuarioB txtU;
+    ImplTextoAdministradorB txtA;
     
-     public GestionAdminBImpl () throws RemoteException {
+     public GestionAdminBImpl () throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
+        txtU= new ImplTextoUsuarioB();
+        txtA= new ImplTextoAdministradorB();
         rellenar();
                 
         
     }
     
     
-    public void rellenar(){// borrar esta mierda
-        AdministradorB admin1= new AdministradorB("aaaaaaaa","aaaaaaaa");
+    public void rellenar() throws IOException{// borrar esta mierda
+        /*AdministradorB admin1= new AdministradorB("aaaaaaaa","aaaaaaaa");
         AdministradorB admin2= new AdministradorB("bbbbbbbb","bbbbbbbb");
         admins.add(admin1);
         admins.add(admin2);
+        
+        txtA.guardarAdministradores(admins);
 
         UsuarioB user1 = new UsuarioB("Carlos","Perez","Administrativo","ccccccccc","1 am","24/02/18");
         UsuarioB user2 = new UsuarioB("Andres","Vega","Estudiante","dddddddd","2 am","24/02/18");
@@ -41,6 +52,12 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
         usuariosB.add(user1);
         usuariosB.add(user2);
         usuariosB.add(user3);
+        
+        txtU.guardarUsuarios(usuariosB);
+        */
+        
+        usuariosB=txtU.getUsuarios();
+        admins= txtA.getAdministradores();
     }
     
   
@@ -59,6 +76,11 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
 
     @Override
     public ArrayList<UsuarioB> ConsultarUsuariosIngresados() {
+        try {
+            usuariosB=txtU.getUsuarios();
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdminBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return usuariosB;
     }
 
@@ -95,6 +117,12 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
                 
                 break;
             }
+        }
+        
+        try {
+            txtA.guardarAdministradores(admins);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdminBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return flag;
