@@ -5,17 +5,51 @@
  */
 package cliente;
 
+import AdministradorB.UsuarioB;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sop_rmi.GestionClienteInt;
+
 /**
  *
  * @author philipretl
  */
 public class GuiCliente extends javax.swing.JFrame {
+    
+    GestionClienteInt srvB;
 
     /**
      * Creates new form GuiCliente
      */
     public GuiCliente() {
         initComponents();
+    }
+    
+    public boolean conexion(String ip,String puerto){
+        boolean flag=true;
+        
+        System.out.println("ip: "+ ip + "puerto: " + puerto );
+        
+        try{
+            int numPuertoRMIRegistry=0;
+            String direccionIpRMIRegistry=ip;
+            numPuertoRMIRegistry = Integer.parseInt(puerto);
+            
+            srvB= (GestionClienteInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"GestionCliente");
+            
+            
+        }catch(Exception e){
+           
+            System.out.println("No se pudo registrar la conexion..." + flag);
+            System.out.println(e.getMessage());
+        } 
+        
+        if(srvB==null){
+            flag = false;
+        }
+    
+        return flag;
     }
 
     /**
@@ -279,10 +313,66 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnConfirmarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarSActionPerformed
         // TODO add your handling code here:
+        int res=0;
+        if(txtCodigoS.getText().equals("")){
+            txtConsola.setText("$ Error, el codigo no puede ser vacio");
+        }else{
+            if(txtCodigoS.getText().length()<8 && txtCodigoS.getText().length()<15){
+                txtConsola.setText("$ Error, el codigo debe tener entre 8 y 15 caracteres");
+            }else{
+                
+                try {
+                    res = srvB.salidaUsuario(txtCodigoS.getText());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
     }//GEN-LAST:event_btnConfirmarSActionPerformed
 
     private void btnConfirmarIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarIActionPerformed
         // TODO add your handling code here:
+        int res=0;
+        if(txtCodigoI.getText().equals("")){
+            txtConsola.setText("$ Error, el codigo no puede ser vacio");
+        }else{
+            if(txtCodigoI.getText().length()<8 && txtCodigoI.getText().length()<15){
+                txtConsola.setText("$ Error, el codigo debe tener entre 8 y 15 caracteres");
+            }else{
+                try {
+                    res=srvB.ingresoUsuario(txtCodigoI.getText());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                switch(res){
+                    case 1:
+                        txtConsola.setText("$ Acceso denegado, código no registrado, por favor contacte al administrador de la aplicación");
+                        break;
+                    case 2:
+                        txtConsola.setText("$ Violacion de seguridad, ya se encuentra en el interior de las instalaciones");
+                        break;
+                    case 3:
+                        String cadena="$ Acceso concedido\n";
+                        UsuarioB usuarioIngresado = null;
+                    {
+                        try {
+                            usuarioIngresado = srvB.consultarUsuarioIngresado();
+                        } catch (RemoteException ex) {
+                            Logger.getLogger(GuiCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        cadena=cadena+usuarioIngresado.getRol()+"\n";
+                        cadena=cadena+usuarioIngresado.getNombre()+" "+usuarioIngresado.getApellidos()+"\n";
+                        cadena=cadena+usuarioIngresado.getHora()+" "+usuarioIngresado.getFecha();
+                        txtConsola.setText(cadena);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }//GEN-LAST:event_btnConfirmarIActionPerformed
 
     /**

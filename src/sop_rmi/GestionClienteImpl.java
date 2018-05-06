@@ -25,6 +25,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     //private int semaforo;
     private ArrayList<UsuarioB> usuarios;
     static SolicitudServidorInt srvA;
+    private UsuarioB usrb;
     String ip;
     int puerto;
     
@@ -44,35 +45,37 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
             Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         int retorno=0;
-        UsuarioA usr = conexionServidorA(ip,puerto,codigo);
-        UsuarioB usrb;
         Calendar calendario;
-        if(usr==null){
-            retorno=1;
-        }else{
+        //UsuarioA usr = conexionServidorA(codigo);
+        
+        //UsuarioA usr = null;
+        /*if(usr==null){
+            retorno=1;//usuario no existe
+        }else{*/
             for (int i = 0; i < usuarios.size(); i++) {
                 if(usuarios.get(i).getCodigo().equals(codigo)){
-                    retorno =2;
+                    retorno =2;//usuario ya ha ingresado
                 }
             }
-        }
-        
-        if(retorno==0){
-            calendario = Calendar.getInstance();
-            String hora=String.valueOf(calendario.get(Calendar.HOUR))+":"+String.valueOf(calendario.get(Calendar.MINUTE));
-            String fecha=String.valueOf(calendario.get(Calendar.DAY_OF_MONTH))+" de "+String.valueOf(calendario.get(Calendar.MONTH))+" de "+String.valueOf(calendario.get(Calendar.YEAR));
-            usrb=new UsuarioB(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
-            usuarios.add(usrb);
             
-            ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
-            try {
-                atxt.guardarUsuarios(usuarios);
-            } catch (IOException ex) {
-                Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+            if(retorno==0){
+                calendario = Calendar.getInstance();
+                String hora=String.valueOf(calendario.get(Calendar.HOUR))+":"+String.valueOf(calendario.get(Calendar.MINUTE));
+                String fecha=String.valueOf(calendario.get(Calendar.DAY_OF_MONTH))+" de "+String.valueOf(calendario.get(Calendar.MONTH))+" de "+String.valueOf(calendario.get(Calendar.YEAR));
+                System.out.println(hora+fecha);
+                //usrb=new UsuarioB(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
+                //usuarios.add(usrb);
+            
+                ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
+                /*try {
+                    //atxt.guardarUsuarios(usuarios);
+                } catch (IOException ex) {
+                    Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+            
+                retorno=3;//Usuario pudo ingresar
             }
-            
-            retorno=3;
-        }
+        //}
         
         return retorno;
     }
@@ -88,7 +91,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         int retorno = 0;
         int pos=-1;
         
-        UsuarioA usr = conexionServidorA(ip,puerto,codigo);
+        UsuarioA usr = conexionServidorA(codigo);
         if(usr==null){
             retorno=1;
         }else{
@@ -122,13 +125,10 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         usuarios=usuariosB.getUsuarios();
     }
     
-    public static UsuarioA conexionServidorA(String ip,int puerto, String codigo) throws RemoteException{
+    public UsuarioA conexionServidorA(String codigo) throws RemoteException{
         UsuarioA usuario;
         try{
-            int numPuertoRMIRegistry=0;
-            String direccionIpRMIRegistry=ip;
-            numPuertoRMIRegistry = puerto;
-            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"Gestion");
+            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(puerto, ip,"Gestion");
                             
                             
         }catch(Exception e){
@@ -139,5 +139,11 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         usuario = srvA.soliciarUsuario(codigo);
         
         return usuario;
+    }
+    
+
+    @Override
+    public UsuarioB consultarUsuarioIngresado() throws RemoteException {
+        return usrb;
     }
 }
