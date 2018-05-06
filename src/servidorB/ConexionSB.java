@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidorA;
+package servidorB;
 
-import servidorB.*;
 import AdministradorA.*;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -19,12 +18,12 @@ import sop_rmi.GestionAdmAImpl;
  *
  * @author philipretl
  */
-public class ConexionSA extends javax.swing.JFrame {
+public class ConexionSB extends javax.swing.JFrame {
     ServidorDeObjetos servObj;
     /**
      * Creates new form Login
      */
-    public ConexionSA() {
+    public ConexionSB() {
         initComponents();
         
         
@@ -60,7 +59,7 @@ public class ConexionSA extends javax.swing.JFrame {
         jLabel1.setText("Arrancar Servidor");
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 3, 14)); // NOI18N
-        jLabel4.setText("Gestion Usuarios");
+        jLabel4.setText("Entrada y salida Usuarios");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,14 +182,14 @@ public class ConexionSA extends javax.swing.JFrame {
         try {
             objUsuario = new GestionAdmAImpl();
         } catch (RemoteException ex) {
-            Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try
         {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");           
       
 	} catch (Exception e)
         {
@@ -228,13 +227,13 @@ public class ConexionSA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConexionSA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConexionSB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConexionSA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConexionSB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConexionSA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConexionSB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConexionSA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConexionSB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -256,7 +255,7 @@ public class ConexionSA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConexionSA().setVisible(true);
+                new ConexionSB().setVisible(true);
             }
         });
     }

@@ -84,7 +84,9 @@ public class GuiAdminA extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel2.setBackground(new java.awt.Color(71, 160, 249));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setText("Consola");
@@ -116,6 +118,7 @@ public class GuiAdminA extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setText("Codigo");
@@ -268,6 +271,7 @@ public class GuiAdminA extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel1.setBackground(new java.awt.Color(71, 160, 249));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setText("Administracion Servidor Control Salida y Entrada");
@@ -292,6 +296,7 @@ public class GuiAdminA extends javax.swing.JFrame {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblModCred.setText("Modificar Credenciales");
@@ -445,25 +450,23 @@ public class GuiAdminA extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 23, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -474,19 +477,23 @@ public class GuiAdminA extends javax.swing.JFrame {
         
         System.out.println("ip: "+ ip + "puerto: " + puerto );
         
-         try{
+        try{
             int numPuertoRMIRegistry=0;
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = Integer.parseInt(puerto);
-
+            
             srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
             
             
         }catch(Exception e){
-            flag = false;
-            System.out.println("No se pudo registrar la conexion...");
+           
+            System.out.println("No se pudo registrar la conexion..." + flag);
             System.out.println(e.getMessage());
         } 
+        
+        if(srvA==null){
+            flag = false;
+        }
     
         return flag;
     }
@@ -566,12 +573,12 @@ public class GuiAdminA extends javax.swing.JFrame {
             
         }else{
         
-            if(txtUser.getText().length()!=8 || txtPass.getText().length()!=8 ){
-                
-                txtConsola.setText("$ Error el usuario o la contraseña no puede tener un tamaño diferente a 8 caracteres"); 
+            //if(txtUser.getText().length()!=8 || txtPass.getText().length()!=8 ){
+            if(txtUser.getText().length()<8 & txtUser.getText().length()>15 & txtPass.getText().length()<8 & txtPass.getText().length()>15){    
+                txtConsola.setText("$ Error \n el usuario o la contraseña deben estar entre 15 y 8 caracteres"); 
             }else{
-                adminA.setClave(txtUser.getText());
-                adminA.setLogin(txtPass.getText());
+                adminA.setClave(txtPass.getText());
+                adminA.setLogin(txtUser.getText());
                 
                 try {
                     flag=srvA.AccesoAdministrador(adminA);//consultar el usuario y contraseña en la flag;
@@ -697,7 +704,56 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
         boolean flag=false;
+        String antiguo=adminA.getLogin();
+        btnConfirmar.setSelected(false);
         
+        switch(cbxOpcion.getSelectedIndex()){
+            case 0:
+        
+                try {
+                    flag=srvA.modificarCredenciales(antiguo,txtUser.getText(),"",cbxOpcion.getSelectedIndex());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(!flag){
+                    txtConsola.setText("$ Error \n  El login debe estar entre 8 y 15 caracteres");
+                }else{
+                    adminA.setLogin(txtUser.getText());
+                    txtConsola.setText("$ Login modificado");
+                }
+                
+                break;
+            case 1:
+                try {
+                    flag=srvA.modificarCredenciales(antiguo,"",txtPass.getText(),cbxOpcion.getSelectedIndex());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(!flag){
+                    txtConsola.setText("$ Error \n  La contraseña debe estar entre 8 y 15 caracteres");
+                }else{
+                    adminA.setClave(txtPass.getText());
+                    txtConsola.setText("$ contraseña modificado");
+                }
+                break;
+            case 2:
+                try {
+                    flag=srvA.modificarCredenciales(antiguo,txtUser.getText(),txtPass.getText(),cbxOpcion.getSelectedIndex());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(!flag){
+                    txtConsola.setText("$ Error \n  El login y contraseña debe estar entre 8 y 15 caracteres");
+                }else{
+                    adminA.setLogin(txtUser.getText());
+                    adminA.setClave(txtPass.getText());
+                    txtConsola.setText("$ Login y contraseña modificado");
+                }
+                break;
+        
+        
+        
+        }
         
         
         txtUser.setText("");

@@ -5,7 +5,7 @@
  */
 package sop_rmi;
 
-import ServidorB.SolicitudServidorImpl;
+import servidorB.SolicitudServidorImpl;
 import AdministradorB.UsuarioB;
 import DAO.ImplTextoUsuarioB;
 import java.io.IOException;

@@ -167,7 +167,7 @@ public class ConexionA extends javax.swing.JFrame {
         boolean flag;
         
         flag=gui.conexion(txtIp.getText(),txtPuerto.getText());
-        flag=true;
+        //flag=true;
         if(flag){
             JOptionPane.showMessageDialog(this,"Conexion correcta");
             gui.setVisible(true);

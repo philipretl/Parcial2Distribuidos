@@ -6,6 +6,7 @@
 package AdministradorB;
 
 import AdministradorA.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,9 +40,9 @@ public class ConexionB extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIp = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPuerto = new javax.swing.JTextField();
         btnConectar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -84,13 +85,16 @@ public class ConexionB extends javax.swing.JFrame {
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtIp.setText("localhost");
+        txtIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtIpActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Puerto del Rmi.Registry");
+
+        txtPuerto.setText("2023");
 
         btnConectar.setBackground(new java.awt.Color(106, 160, 213));
         btnConectar.setText("Conectar");
@@ -121,8 +125,8 @@ public class ConexionB extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPuerto)
+                            .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)))
                 .addGap(47, 47, 47))
         );
@@ -132,11 +136,11 @@ public class ConexionB extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConectar)
@@ -168,14 +172,25 @@ public class ConexionB extends javax.swing.JFrame {
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
-        gui.setVisible(true);
-        this.setVisible(false);
+        boolean flag;
+        
+        flag=gui.conexion(txtIp.getText(),txtPuerto.getText());
+        //flag=true;
+        if(flag){
+            JOptionPane.showMessageDialog(this,"Conexion correcta");
+            gui.setVisible(true);
+            this.setVisible(false);
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Conexion Incorrecta revise la Ip y el puerto");
+        
+        }
         
     }//GEN-LAST:event_btnConectarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtIpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +243,7 @@ public class ConexionB extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtIp;
+    private javax.swing.JTextField txtPuerto;
     // End of variables declaration//GEN-END:variables
 }
