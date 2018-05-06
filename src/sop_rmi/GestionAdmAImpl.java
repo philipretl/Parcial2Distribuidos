@@ -42,27 +42,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     public void rellenar() throws IOException{ // borrar esta mierda
         usuariosA= txtA.getUsuarios();
         admins=txtAdm.getAdministradores();
-        
-        /*AdministradorA admin1= new AdministradorA("aaaaaaaa","aaaaaaaa");
-        AdministradorA admin2= new AdministradorA("bbbbbbbb","bbbbbbbb");
-        admins.add(admin1);
-        admins.add(admin2);
-        txtAdm.guardarAdministradores(admins);
-        */
-        
-        /*UsuarioA user1 = new UsuarioA("Carlos","Perez","Administrativo","ccccccccc");
-        UsuarioA user2 = new UsuarioA("Andres","Vega","Estudiante","dddddddd");
-        UsuarioA user3 = new UsuarioA("Mauricio","Manzano","Profesor","eeeeeeee");
-        usuariosA.add(user1);
-        usuariosA.add(user2);
-        usuariosA.add(user3);
-        */
-        //txtA.guardarUsuarios(usuariosA);
-        
-        /*for (int i = 0; i < usuariosA.size(); i++) {
-            System.out.print("usuario: "+usuariosA.get(i).getNombre()+" - "+usuariosA.get(i).getApellidos());
-            
-        }*/
+ 
         
     }
     
@@ -80,11 +60,11 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
 
     
     @Override
-    public boolean ModificarUsuario(UsuarioA user) throws RemoteException {
+    public boolean ModificarUsuario(String viejo,UsuarioA user) throws RemoteException {
        
        boolean flag=false;
        int pos;
-       pos=buscarUsuario(user.getCodigo());
+       pos=buscarUsuario(viejo);
         if(pos!=-1){
             usuariosA.set(pos,user);
             flag=true;

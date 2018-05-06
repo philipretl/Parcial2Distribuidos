@@ -317,12 +317,18 @@
             <Property name="text" type="java.lang.String" value="Confirmar Codigo"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarCodActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnConfirmarCrud">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarCrudActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnLimpiarCrud">
           <Properties>
@@ -337,16 +343,25 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnCodigoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnNombres">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNombresActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnApellidos">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnApellidosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnRol">
           <Properties>

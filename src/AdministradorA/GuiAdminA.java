@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import sop_rmi.*;
 
@@ -22,6 +23,7 @@ public class GuiAdminA extends javax.swing.JFrame {
     ConexionA loginA;
     GestionAdmAInt srvA;
     AdministradorA adminA;
+    String antiguo;
     /**
      * Creates new form GuiCliente
      */
@@ -35,6 +37,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnNombres.setVisible(!true);
         rbtnApellidos.setVisible(!true);
         rbtnRol.setVisible(!true);
+        antiguo="";
     }
     
     
@@ -165,9 +168,19 @@ public class GuiAdminA extends javax.swing.JFrame {
 
         btnConfirmarCod.setText("Confirmar Codigo");
         btnConfirmarCod.setEnabled(false);
+        btnConfirmarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarCodActionPerformed(evt);
+            }
+        });
 
         btnConfirmarCrud.setText("Confirmar");
         btnConfirmarCrud.setEnabled(false);
+        btnConfirmarCrud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarCrudActionPerformed(evt);
+            }
+        });
 
         btnLimpiarCrud.setText("Limpiar");
         btnLimpiarCrud.setEnabled(false);
@@ -178,10 +191,25 @@ public class GuiAdminA extends javax.swing.JFrame {
         });
 
         rbtnCodigo.setEnabled(false);
+        rbtnCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnCodigoActionPerformed(evt);
+            }
+        });
 
         rbtnNombres.setEnabled(false);
+        rbtnNombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnNombresActionPerformed(evt);
+            }
+        });
 
         rbtnApellidos.setEnabled(false);
+        rbtnApellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnApellidosActionPerformed(evt);
+            }
+        });
 
         rbtnRol.setEnabled(false);
         rbtnRol.addActionListener(new java.awt.event.ActionListener() {
@@ -826,7 +854,7 @@ public class GuiAdminA extends javax.swing.JFrame {
 
     private void rbtnIngresarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnIngresarUsuActionPerformed
         // TODO add your handling code here:
-        txtConsola.setText(concatenarCodigos());
+        txtConsola.setText("$  Ingresar usuario \n  Rellene los campos \n"+concatenarCodigos());
         rbtnEliminarUsu.setSelected(false);
         rbtnModificarUsu.setSelected(false);
         
@@ -850,15 +878,17 @@ public class GuiAdminA extends javax.swing.JFrame {
         btnLimpiarCrud.setEnabled(true);
         btnConfirmarCrud.setEnabled(true);
         
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCodigo.setText("");
+        
         
     }//GEN-LAST:event_rbtnIngresarUsuActionPerformed
-
-    private void rbtnModificarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModificarUsuActionPerformed
-        // TODO add your handling code here:
-        
+    private void reiniciarModificar(){
+         // TODO add your handling code here:
+        antiguo="";
         btnConfirmarCrud.setEnabled(!true);
         btnConfirmarCod.setEnabled(true);
-        txtConsola.setText(concatenarCodigos());
         
         rbtnIngresarUsu.setSelected(false);
         rbtnEliminarUsu.setSelected(false);
@@ -880,13 +910,31 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnApellidos.setVisible(true);
         rbtnRol.setVisible(true);
         
-        
-        
+        rbtnCodigo.setEnabled(!true);
+        rbtnNombres.setEnabled(!true);
+        rbtnApellidos.setEnabled(!true);
+        rbtnRol.setEnabled(!true);
+
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCodigo.setText("");
+        rbtnCodigo.setSelected(!true);
+        rbtnNombres.setSelected(!true);
+        rbtnApellidos.setSelected(!true);
+        rbtnRol.setSelected(!true);
+    
+    }
+    private void rbtnModificarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnModificarUsuActionPerformed
+        txtConsola.setText("$  Modificar usuario \n  Confirme el codigo que desea modificar \n"+concatenarCodigos());
+
+        reiniciarModificar();
+
+
     }//GEN-LAST:event_rbtnModificarUsuActionPerformed
 
     private void rbtnEliminarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarUsuActionPerformed
         // TODO add your handling code here:
-        txtConsola.setText(concatenarCodigos());
+        txtConsola.setText("$  Eliminar usuario \n  Confirme el codigo que desea Eliminar \n"+concatenarCodigos());
         btnConfirmarCod.setEnabled(true);
         rbtnIngresarUsu.setSelected(false);
         rbtnModificarUsu.setSelected(false);
@@ -898,10 +946,14 @@ public class GuiAdminA extends javax.swing.JFrame {
         rbtnRol.setVisible(!true);
         
         btnConfirmarCrud.setEnabled(!true);
+        
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCodigo.setText("");
     }//GEN-LAST:event_rbtnEliminarUsuActionPerformed
     
     private String concatenarCodigos() {
-        String cadena="$ Codigos\n";
+        String cadena="$ Codigos    nombres    apellidos    rol \n";
         ArrayList<UsuarioA> lista=null;
         try {
             lista=srvA.consultarUsuarios();
@@ -910,7 +962,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         }
        
         for (int i = 0; i <lista.size(); i++) {
-          cadena=cadena + lista.get(i).getCodigo()+"\n";   
+          cadena=cadena + lista.get(i).getCodigo()+"   " +lista.get(i).getNombre() +"   "+lista.get(i).getApellidos() + "   "+ lista.get(i).getRol() + "\n";   
         }
        
        return cadena;
@@ -921,14 +973,264 @@ public class GuiAdminA extends javax.swing.JFrame {
     
     private void rbtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRolActionPerformed
         // TODO add your handling code here:
+        lblRol.setEnabled(rbtnRol.isSelected());
+        cbxRol.setEnabled(rbtnRol.isSelected());
+
     }//GEN-LAST:event_rbtnRolActionPerformed
 
     private void btnLimpiarCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCrudActionPerformed
         // TODO add your handling code here:
+        btnLimpiarCrud.setSelected(false);
         txtCodigo.setText("");
         txtNombres.setText("");
         txtApellidos.setText("");    
     }//GEN-LAST:event_btnLimpiarCrudActionPerformed
+    private void ingresar(){
+        
+        String nombres,codigo,apellidos;
+        boolean flag=false;
+        
+        nombres=txtNombres.getText();
+        apellidos=txtApellidos.getText();
+        codigo=txtCodigo.getText();
+        
+        if(apellidos.equals("") || nombres.equals("") || codigo.equals("")){
+            txtConsola.setText("$ Error ninguno de los campos puede estar vacio");
+        
+        }else{
+            if(codigo.length()!=8){
+                txtConsola.setText("$ Error el codigo debe ser de 8 caracteres");
+            }else{
+                UsuarioA user = null;
+                switch(cbxRol.getSelectedIndex()){
+                    case 0:
+                        user = new UsuarioA(nombres,apellidos,"Administrativo",codigo);
+                        break;
+                    
+                    case 1:
+                        user = new UsuarioA(nombres,apellidos,"Profesor",codigo);
+                        break;
+                        
+                    case 2:
+                        user = new UsuarioA(nombres,apellidos,"Estudiante",codigo);
+                        break;
+                
+                
+                
+                }
+                
+                try {
+                    flag=srvA.RegistrarUsuario(user);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+               if(!flag){
+                 txtConsola.setText("$ Error el codigo ya existe");  
+               } else{
+                   txtNombres.setText("");
+                   txtApellidos.setText("");
+                   txtCodigo.setText("");
+                   txtConsola.setText("$ Usuario registrado Correctamente.\n\n" + concatenarCodigos());
+                   
+               }
+            }
+        
+        }
+    }
+    
+        
+        
+    private void modificar(){
+        boolean flag=false;
+        String nombres,codigo,apellidos;   
+        UsuarioA user = null;
+        
+        
+        
+        codigo=txtCodigo.getText();
+        nombres=txtNombres.getText();
+        apellidos=txtApellidos.getText();
+        
+      
+        user= new UsuarioA();
+ 
+        if(apellidos.equals("") || nombres.equals("") || codigo.equals("")){
+            txtConsola.setText("$ Error ninguno de los campos puede estar vacio");
+
+        }else{
+            if(codigo.length()!=8){
+                txtConsola.setText("$ Error el codigo debe ser de 8 caracteres");
+            }else{
+
+                switch(cbxRol.getSelectedIndex()){
+                    case 0:
+                        //user = new UsuarioA(nombres,apellidos,"Administrativo",codigo);
+                        user.setNombre(nombres);
+                        user.setApellidos(apellidos);
+                        user.setCodigo(codigo);
+                        user.setRol("Administrativo");
+                        break;
+
+                    case 1:
+                        user.setNombre(nombres);
+                        user.setApellidos(apellidos);
+                        user.setCodigo(codigo);
+                        user.setRol("Profesor");
+                        break;
+
+                    case 2:
+                        user.setNombre(nombres);
+                        user.setApellidos(apellidos);
+                        user.setCodigo(codigo);
+                        user.setRol("Estudiante");
+                        break;
+
+
+
+                }
+                System.out.println("antiguo- "+antiguo);
+                System.out.println("user "+ user.getNombre() + " " + user.getCodigo());
+                try {
+                    flag=srvA.ModificarUsuario(antiguo,user);
+                    
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+
+                if(!flag){
+                    txtConsola.setText("$ Error el codigo No se puede modificar");
+                } else{
+                    txtNombres.setText("");
+                    txtApellidos.setText("");
+                    txtCodigo.setText("");
+                    reiniciarModificar();
+                    txtConsola.setText("$ Usuario Modificado Correctamente.\n\n" + concatenarCodigos());
+
+                }
+            }
+
+        }
+    
+    }
+    
+    private void eliminar(){
+        
+        
+    }
+    private void btnConfirmarCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarCrudActionPerformed
+        // TODO add your handling code here:
+        btnConfirmarCrud.setSelected(false);
+        int opcion=-1;
+        if(rbtnIngresarUsu.isSelected()){
+            opcion=0;
+        }
+        if(rbtnModificarUsu.isSelected()){
+            opcion=1;
+        }
+        if(rbtnEliminarUsu.isSelected()){
+            opcion=2;
+        }
+        
+        System.out.println("opcion:  "+ opcion );
+        
+        switch(opcion){
+            
+            case 0:
+                ingresar();
+                break;
+            
+            case 1:
+                modificar();
+                
+                break;
+            case 2:
+                eliminar();
+                break;
+        
+        
+        }
+        
+        
+    }//GEN-LAST:event_btnConfirmarCrudActionPerformed
+
+    private void btnConfirmarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarCodActionPerformed
+        // TODO add your handling code here:
+        String nombres,codigo,apellidos;
+        boolean flag=false;
+        int opcion=-1;
+        
+        codigo=txtCodigo.getText();
+        
+        
+        
+        try {
+            if(srvA.buscarUsuario(codigo)==-1){
+                txtConsola.setText("$ Error el usuario no existe");
+                
+            }else{
+                lblCodigo.setEnabled(false);
+                txtCodigo.setEnabled(false);
+                UsuarioA user = srvA.soliciarUsuario(codigo);
+                antiguo=user.getCodigo();
+                rbtnCodigo.setVisible(true);
+                rbtnNombres.setVisible(true);
+                rbtnApellidos.setVisible(true);
+                rbtnRol.setVisible(true);
+         
+                rbtnCodigo.setEnabled(true);
+                rbtnNombres.setEnabled(true);
+                rbtnApellidos.setEnabled(true);
+                rbtnRol.setEnabled(true);
+         
+                btnConfirmarCod.setEnabled(!true);
+                txtConsola.setText("$ Modificar Usuario con codigo:" + codigo+"\n  Active con los radio buttons los campos a modificar \n Presione Confirmar para realizar la modificacion");
+                btnLimpiarCrud.setEnabled(true);
+                btnConfirmarCrud.setEnabled(true);
+                
+                txtNombres.setText(user.getNombre());
+                txtApellidos.setText(user.getApellidos());
+                txtCodigo.setText(user.getCodigo());
+
+
+                if(user.getRol().equals("Administrativo")) opcion=0;
+                if(user.getRol().equals("Profesor")) opcion=1;
+                if(user.getRol().equals("Estudiante")) opcion=2;
+
+                cbxRol.setSelectedIndex(opcion);
+                
+               
+                
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(GuiAdminA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConfirmarCodActionPerformed
+
+    private void rbtnCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCodigoActionPerformed
+        // TODO add your handling code here:
+         lblCodigo.setEnabled(rbtnCodigo.isSelected());
+         txtCodigo.setEnabled(rbtnCodigo.isSelected());
+    }//GEN-LAST:event_rbtnCodigoActionPerformed
+
+    private void rbtnNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNombresActionPerformed
+        // TODO add your handling code here:
+        lblNombre.setEnabled(rbtnNombres.isSelected());
+        txtNombres.setEnabled(rbtnNombres.isSelected());
+
+    }//GEN-LAST:event_rbtnNombresActionPerformed
+
+    private void rbtnApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnApellidosActionPerformed
+        // TODO add your handling code here:
+         
+        lblApellidos.setEnabled(rbtnApellidos.isSelected());
+        txtApellidos.setEnabled(rbtnApellidos.isSelected());
+
+
+
+    }//GEN-LAST:event_rbtnApellidosActionPerformed
 
     /**
      * @param args the command line arguments
