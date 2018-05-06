@@ -6,14 +6,17 @@
 package servidorB;
 
 
-import servidorA.*;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import sop_rmi.SolicitudServidorInt;
 //import sop_rmi.ServidorUsuariosImpl;
 
 public class ServidorDeObjetosB
+    
 {
+    SolicitudServidorInt srvA;
+    
     public static void main(String args[]) throws RemoteException
     {
                  
@@ -35,5 +38,20 @@ public class ServidorDeObjetosB
         }
         
         
+    }
+    
+    public void conexionServidorA(){
+        try{
+            int numPuertoRMIRegistry=0;
+            String direccionIpRMIRegistry="localhost";
+            numPuertoRMIRegistry = 2023;
+                            
+            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
+                            
+                            
+        }catch(Exception e){
+            System.out.println("No se pudo registrar la conexion...");
+            System.out.println(e.getMessage());
+        }
     }
 }
