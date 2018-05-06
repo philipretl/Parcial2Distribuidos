@@ -6,6 +6,7 @@
 package servidorB;
 
 import AdministradorA.*;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -187,12 +188,17 @@ public class ConexionSB extends javax.swing.JFrame {
         GestionAdmBInt objUsuario = null;
         GestionClienteInt objCliente = null;
         try {
-            objUsuario = new GestionAdminBImpl();
+           
             objCliente = new GestionClienteImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            objUsuario = new GestionAdminBImpl();
+        } catch (IOException ex) {
+            Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try
         {
                     
