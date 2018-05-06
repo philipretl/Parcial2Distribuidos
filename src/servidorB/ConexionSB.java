@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import servidorA.UtilidadesRegistroS;
 import sop_rmi.GestionAdmAImpl;
+import sop_rmi.GestionAdmBInt;
+import sop_rmi.GestionAdminBImpl;
 
 /**
  *
@@ -87,6 +89,7 @@ public class ConexionSB extends javax.swing.JFrame {
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
+        txtIp.setText("localhost");
         txtIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIpActionPerformed(evt);
@@ -94,6 +97,8 @@ public class ConexionSB extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Puerto del Rmi.Registry");
+
+        txtPuerto.setText("2020");
 
         btnConectar.setBackground(new java.awt.Color(106, 160, 213));
         btnConectar.setText("Arrancar");
@@ -177,9 +182,9 @@ public class ConexionSB extends javax.swing.JFrame {
         int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
         
         
-        GestionAdmAImpl objUsuario = null;        
+        GestionAdmBInt objUsuario = null;        
         try {
-            objUsuario = new GestionAdmAImpl();
+            objUsuario = new GestionAdminBImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
