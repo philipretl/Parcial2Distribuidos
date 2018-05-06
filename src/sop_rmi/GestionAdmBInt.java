@@ -5,6 +5,7 @@
  */
 package sop_rmi;
 
+import AdministradorB.AdministradorB;
 import AdministradorB.UsuarioB;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  * @author Mauricio
  */
 public interface GestionAdmBInt extends Remote {
-    boolean AccesoAdministrador(String login,String clave) throws RemoteException;
+    boolean AccesoAdministrador(AdministradorB adminB) throws RemoteException;
     ArrayList<UsuarioB> ConsultarUsuariosIngresados() throws RemoteException;
+    boolean modificarCredenciales(String antiguo,String login, String pass, int opcion) throws RemoteException;
 }

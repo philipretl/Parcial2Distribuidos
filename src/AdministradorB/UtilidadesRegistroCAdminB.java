@@ -8,7 +8,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 
-public class UtilidadesRegistroC
+public class UtilidadesRegistroCAdminB
 {   
     
     public static Remote obtenerObjRemoto(int puerto, String dirIP, String nameObjReg)

@@ -45,7 +45,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     
     @Override
     public boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException {
-        System.out.println("$ server: Acceso a administrador");
+        //System.out.println("$ server: Acceso a administrador" + adminA.getLogin() + adminA.getClave());
         boolean flag = false;
         for (int i = 0; i < admins.size(); i++) {
             if(adminA.getLogin().equals(admins.get(i).getLogin()) && adminA.getClave().equals(admins.get(i).getClave())){
