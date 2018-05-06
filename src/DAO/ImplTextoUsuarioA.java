@@ -43,31 +43,27 @@ public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
         
 
     @Override
-    public void guardarUsuarios(UsuarioA usuario) throws IOException{
+    public void guardarUsuarios(ArrayList<UsuarioA> usuarios) throws IOException{
         
         File archivo = new File("usuarios.txt");
         BufferedWriter bw;
         String linea;
         if(archivo.exists()) {
-            bw = new BufferedWriter(new FileWriter(archivo,true));
-            linea=usuario.getNombre()+"/"+usuario.getApellidos()+"/"+usuario.getRol()+"/"+usuario.getCodigo()+"/";
-            bw.write(linea);
+            bw = new BufferedWriter(new FileWriter(archivo));
+            for (int i = 0; i< usuarios.size(); i++) {
+                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+                bw.write(linea);
+            }
+            
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
-            linea=usuario.getNombre()+"/"+usuario.getApellidos()+"/"+usuario.getRol()+"/"+usuario.getCodigo()+"/";
-            bw.write(linea);
+            for (int i = 0; i< usuarios.size(); i++) {
+                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+                bw.write(linea);
+            }
         }
         bw.close();
     }
 
-    @Override
-    public void modificarUsuario(UsuarioA usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void borrarUsuario(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

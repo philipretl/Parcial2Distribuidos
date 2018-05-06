@@ -17,8 +17,6 @@ import java.util.ArrayList;
 public interface InterfazUsuarioADAO {
     
     public ArrayList<UsuarioA> getUsuarios() throws FileNotFoundException, IOException;
-    public void guardarUsuarios(UsuarioA usuario) throws IOException;
-    public void modificarUsuario(UsuarioA usuario);
-    public void borrarUsuario(String codigo);
+    public void guardarUsuarios(ArrayList<UsuarioA> usuarios) throws IOException;
     
 }

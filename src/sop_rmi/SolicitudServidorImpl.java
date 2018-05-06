@@ -17,6 +17,12 @@ import java.util.ArrayList;
 public class SolicitudServidorImpl extends UnicastRemoteObject implements SolicitudServidorInt{
 
     ArrayList<UsuarioA> usuarios;
+
+    public SolicitudServidorImpl() throws RemoteException{
+        super();
+    }
+    
+    
     
     public void cargarUsuarios(){
         
