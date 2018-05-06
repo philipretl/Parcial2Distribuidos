@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public interface GestionAdmAInt extends Remote{
     boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException;
     boolean RegistrarUsuario(UsuarioA user) throws RemoteException;
-    boolean ModificarUsuario(UsuarioA user) throws RemoteException;
+    boolean ModificarUsuario(String viejo,UsuarioA user) throws RemoteException;
     boolean BorrarUsuario(String codigo) throws RemoteException;
     UsuarioA soliciarUsuario(String codigo) throws RemoteException;
     int buscarUsuario(String codigo) throws RemoteException;

@@ -188,7 +188,7 @@ public class ConexionSB extends javax.swing.JFrame {
         GestionAdmBInt objUsuario = null;
         GestionClienteInt objCliente = null;
         try {
-            objUsuario = new GestionAdminBImpl();
+           
             objCliente = new GestionClienteImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,6 +196,11 @@ public class ConexionSB extends javax.swing.JFrame {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            objUsuario = new GestionAdminBImpl();
+        } catch (IOException ex) {
+            Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try
         {
                     

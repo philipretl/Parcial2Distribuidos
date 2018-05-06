@@ -172,10 +172,9 @@ public class ConexionA extends javax.swing.JFrame {
         flag=gui.conexion(txtIp.getText(),txtPuerto.getText());
         //flag=true;
         if(flag){
-            JOptionPane.showMessageDialog(this,"Conexion correcta");
+            JOptionPane.showMessageDialog(this,"Conexion  correcta");
             gui.setVisible(true);
             this.setVisible(false);
-            
         }else{
             JOptionPane.showMessageDialog(this,"Conexion Incorrecta revise la Ip y el puerto");
         
