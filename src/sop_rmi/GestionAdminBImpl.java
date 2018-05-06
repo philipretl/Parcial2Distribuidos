@@ -18,16 +18,12 @@ import java.util.ArrayList;
 public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdmBInt{
     ArrayList<AdministradorB> admins;
     ArrayList<UsuarioB> usuariosB;
-    String ipSA;
-    int puertoSA;
     
-     public GestionAdminBImpl (String ip,int puerto) throws RemoteException {
+     public GestionAdminBImpl () throws RemoteException {
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
         rellenar();
-        ipSA=ip;
-        puertoSA=puerto;
                 
         
     }

@@ -14,6 +14,8 @@ import servidorA.UtilidadesRegistroS;
 import sop_rmi.GestionAdmAImpl;
 import sop_rmi.GestionAdmBInt;
 import sop_rmi.GestionAdminBImpl;
+import sop_rmi.GestionClienteImpl;
+import sop_rmi.GestionClienteInt;
 
 /**
  *
@@ -182,9 +184,11 @@ public class ConexionSB extends javax.swing.JFrame {
         int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
         
         
-        GestionAdmBInt objUsuario = null;        
+        GestionAdmBInt objUsuario = null;
+        GestionClienteInt objCliente = null;
         try {
-            objUsuario = new GestionAdminBImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
+            objUsuario = new GestionAdminBImpl();
+            objCliente = new GestionClienteImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -193,7 +197,8 @@ public class ConexionSB extends javax.swing.JFrame {
         {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objCliente, direccionIpRMIRegistry, numPuertoRMIRegistry, "Gestion");           
       
 	} catch (Exception e)
         {

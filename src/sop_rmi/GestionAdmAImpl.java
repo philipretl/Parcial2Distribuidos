@@ -8,7 +8,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import sop_rmi.*;
 import AdministradorA.*;
+import DAO.ImplTextoAdministradorA;
+import DAO.ImplTextoUsuarioA;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,29 +23,47 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     ArrayList<AdministradorA> admins;
     ArrayList<UsuarioA> usuariosA;
     
+    ImplTextoUsuarioA txtA;
+    ImplTextoAdministradorA txtAdm;
+    
 
     
-    public GestionAdmAImpl() throws RemoteException {
+    public GestionAdmAImpl() throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosA = new ArrayList();
+        txtA=new ImplTextoUsuarioA();
+        txtAdm=new ImplTextoAdministradorA();
         rellenar();
+        
     }
     
         
-    public void rellenar(){// borrar esta mierda
-        AdministradorA admin1= new AdministradorA("aaaaaaaa","aaaaaaaa");
+    public void rellenar() throws IOException{ // borrar esta mierda
+        usuariosA= txtA.getUsuarios();
+        admins=txtAdm.getAdministradores();
+        
+        /*AdministradorA admin1= new AdministradorA("aaaaaaaa","aaaaaaaa");
         AdministradorA admin2= new AdministradorA("bbbbbbbb","bbbbbbbb");
         admins.add(admin1);
         admins.add(admin2);
+        txtAdm.guardarAdministradores(admins);
+        */
         
-        UsuarioA user1 = new UsuarioA("Carlos","Perez","Administrativo","ccccccccc");
+        /*UsuarioA user1 = new UsuarioA("Carlos","Perez","Administrativo","ccccccccc");
         UsuarioA user2 = new UsuarioA("Andres","Vega","Estudiante","dddddddd");
         UsuarioA user3 = new UsuarioA("Mauricio","Manzano","Profesor","eeeeeeee");
         usuariosA.add(user1);
         usuariosA.add(user2);
         usuariosA.add(user3);
-    
+        */
+        //txtA.guardarUsuarios(usuariosA);
+        
+        /*for (int i = 0; i < usuariosA.size(); i++) {
+            System.out.print("usuario: "+usuariosA.get(i).getNombre()+" - "+usuariosA.get(i).getApellidos());
+            
+        }*/
+        
     }
     
     @Override
@@ -66,6 +89,12 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
             usuariosA.set(pos,user);
             flag=true;
         }
+        try {
+            txtA.guardarUsuarios(usuariosA);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdmAImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
        return flag;
     }
 
@@ -80,6 +109,11 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
              flag=true;
         }  
        
+        try {
+            txtA.guardarUsuarios(usuariosA);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdmAImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return flag;
     }
 
@@ -92,7 +126,13 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
         if(pos==-1){
              usuariosA.add(user);
              flag=true;
-        }  
+        }
+        
+        try {
+            txtA.guardarUsuarios(usuariosA);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdmAImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
         return flag;
     }
