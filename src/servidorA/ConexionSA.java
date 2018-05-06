@@ -7,6 +7,7 @@ package servidorA;
 
 import servidorB.*;
 import AdministradorA.*;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -186,6 +187,8 @@ public class ConexionSA extends javax.swing.JFrame {
         try {
             objUsuario = new GestionAdmAImpl();
         } catch (RemoteException ex) {
+            Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
         }
         

@@ -28,12 +28,16 @@ public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
         UsuarioA usr;
         String cadena;
         
-        FileReader f = new FileReader("usuarios.txt");
+        FileReader f = new FileReader("usuariosA.txt");
         BufferedReader b = new BufferedReader(f);
         while((cadena = b.readLine())!=null) {
-            String[] split=cadena.split("/");
-            usr=new UsuarioA(split[0],split[1],split[2],split[3]);
-            usuarios.add(usr);
+            String[] split1=cadena.split("#");
+            for (int i = 0; i < split1.length; i++) {
+                String[] split2 = split1[i].split("/");
+                usr=new UsuarioA(split2[0],split2[1],split2[2],split2[3]);
+                usuarios.add(usr);
+            }
+            
             //System.out.println(cadena);
         }
         b.close();
@@ -45,20 +49,20 @@ public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
     @Override
     public void guardarUsuarios(ArrayList<UsuarioA> usuarios) throws IOException{
         
-        File archivo = new File("usuarios.txt");
+        File archivo = new File("usuariosA.txt");
         BufferedWriter bw;
         String linea;
         if(archivo.exists()) {
             bw = new BufferedWriter(new FileWriter(archivo));
             for (int i = 0; i< usuarios.size(); i++) {
-                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"#";
                 bw.write(linea);
             }
             
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
             for (int i = 0; i< usuarios.size(); i++) {
-                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"/";
+                linea=usuarios.get(i).getNombre()+"/"+usuarios.get(i).getApellidos()+"/"+usuarios.get(i).getRol()+"/"+usuarios.get(i).getCodigo()+"#";
                 bw.write(linea);
             }
         }

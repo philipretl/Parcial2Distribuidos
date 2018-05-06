@@ -30,10 +30,13 @@ public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
         FileReader f = new FileReader("administradoresA.txt");
         BufferedReader b = new BufferedReader(f);
         while((cadena = b.readLine())!=null) {
-            String[] split=cadena.split("/");
-            adm=new AdministradorA(split[0],split[1]);
-            administradores.add(adm);
+            String[] split1=cadena.split("#");
+            for (int i = 0; i < split1.length; i++) {
+                String[] split2 = split1[i].split("/");
+                adm=new AdministradorA(split2[0],split2[1]);
+                administradores.add(adm);
             //System.out.println(cadena);
+            }
         }
         b.close();
         
@@ -48,14 +51,14 @@ public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
         if(archivo.exists()) {
             bw = new BufferedWriter(new FileWriter(archivo));
             for (int i = 0; i< administradores.size(); i++) {
-                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"/";
+                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"#";
                 bw.write(linea);
             }
             
         } else {
             bw = new BufferedWriter(new FileWriter(archivo));
             for (int i = 0; i< administradores.size(); i++) {
-                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"/";
+                linea=administradores.get(i).getLogin()+"/"+administradores.get(i).getClave()+"#";
                 bw.write(linea);
             }
         }

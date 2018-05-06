@@ -25,18 +25,22 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     //private int semaforo;
     private ArrayList<UsuarioB> usuarios;
      static SolicitudServidorInt srvA;
+     String ip;
+    int puerto;
     
-    public GestionClienteImpl() throws RemoteException{
+    public GestionClienteImpl(String ip,int puerto) throws RemoteException{
         super();
         //semaforo=0;
         usuarios=new ArrayList<>();
+        this.ip=ip;
+        this.puerto=puerto;
     }
 
     @Override
     public int ingresoUsuario(String codigo) throws RemoteException {
         
         int retorno=0;
-        UsuarioA usr = conexionServidorA("localhost",2023,codigo);
+        UsuarioA usr = conexionServidorA(ip,puerto,codigo);
         UsuarioB usrb;
         Calendar calendario;
         if(usr==null){
@@ -55,6 +59,14 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
             String fecha=String.valueOf(calendario.get(Calendar.DAY_OF_MONTH))+" de "+String.valueOf(calendario.get(Calendar.MONTH))+" de "+String.valueOf(calendario.get(Calendar.YEAR));
             usrb=new UsuarioB(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
             usuarios.add(usrb);
+            
+            ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
+            try {
+                atxt.guardarUsuarios(usuarios);
+            } catch (IOException ex) {
+                Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             retorno=3;
         }
         
@@ -77,7 +89,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
             int numPuertoRMIRegistry=0;
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = puerto;
-            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
+            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"Gestion");
                             
                             
         }catch(Exception e){
