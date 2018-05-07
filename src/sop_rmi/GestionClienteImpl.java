@@ -21,11 +21,12 @@ import servidorB.ConexionSB;
  *
  * @author Mauricio
  */
-public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt  {
+public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt{
     
     //private int semaforo;
     private ArrayList<UsuarioB> usuarios;
     //static SolicitudServidorInt srvA;
+    SolicitudServidorAInt srvA;
     private UsuarioB usrb;
     private UsuarioB usrS;
     String ip;
@@ -140,20 +141,19 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     
     public UsuarioA conexionServidorA(String codigo) throws RemoteException{
         UsuarioA usuario;
-        try{
-            srvA= (SolicitudServidorA) cliente.UtilidadesRegistroC.obtenerObjRemoto(puerto, ip,"Solicitud");
-                            
-                            
-        }catch(Exception e){
-            System.out.println("No se pudo registrar la conexion...");
-            System.out.println(e.getMessage());
-        }
-        
-        usuario = srvA.soliciarUsuario(codigo);
-        
+        usuario=srvA.solicitarUsuario(codigo);
         return usuario;
     }
     
+    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
+        //gui.consola("$ serverAcceso: Solicitar Usuario ");
+        UsuarioA usr = null;
+        
+        //gestionCliente.
+        usr=srvA.solicitarUsuario(codigo);
+        
+        return usr;
+    }
 
     @Override
     public UsuarioB consultarUsuarioIngresado() throws RemoteException {

@@ -12,6 +12,6 @@ import java.rmi.RemoteException;
  *
  * @author philipretl
  */
-public interface SolicitudServidorA {
-     UsuarioA solicitarUsuario(String codigo) throws RemoteException;
+public interface SolicitudServidorAInt {
+    UsuarioA solicitarUsuario(String codigo) throws RemoteException;
 }

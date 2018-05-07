@@ -25,7 +25,7 @@ import servidorB.UtilidadesRegistroCB;
  *
  * @author philipretl
  */
-public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,GestionClienteInt,SolicitudServidorA{
+public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,GestionClienteInt{
     //Variables GestionAdministrador
     //Int la interfaz que implementa.
     ArrayList<AdministradorB> admins;
@@ -34,9 +34,10 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     ImplTextoUsuarioB txtU;
     ImplTextoAdministradorB txtA;
     ConexionSB gui;
-    String ipServidorA;
-    int puertoServidorA;
+    String ip;
+    int puerto;
     ServidorAInt srvA;
+    GestionClienteInt gestionCliente;
     
     
     
@@ -49,7 +50,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     
     
     
-     public ServidorBImpl (ConexionSB gui,String ipPuertoA, int puertoServidorA) throws RemoteException, IOException {
+     public ServidorBImpl (ConexionSB gui,String ipServidorA, int puertoServidorA) throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
@@ -62,8 +63,9 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         crearMeses();
         this.gui=gui;
         
-        this.ipServidorA=ipServidorA;
-        this.puertoServidorA=puertoServidorA;
+        this.ip=ipServidorA;
+        this.puerto=puertoServidorA;
+        conexion();
         
     }
     
@@ -73,7 +75,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         admins= txtA.getAdministradores();
     }
     
-    public boolean conexion(String ip,String puerto){
+    public boolean conexion(){
         boolean flag=true;
         
         System.out.println("ip: "+ ip + "puerto: " + puerto );
@@ -81,7 +83,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         try{
             int numPuertoRMIRegistry=0;
             String direccionIpRMIRegistry=ip;
-            numPuertoRMIRegistry = Integer.parseInt(puerto);
+            numPuertoRMIRegistry = puerto;
             
             srvA= (ServidorAInt) UtilidadesRegistroCB.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
             
@@ -338,25 +340,16 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         meses.add("Diciembre");
     }
     
-    /*@Override
-    public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
+    
+    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
         gui.consola("$ serverAcceso: Solicitar Usuario ");
         UsuarioA usr = null;
-        ArrayList<UsuarioA> usuarios = new ArrayList<>();
-        ImplTextoUsuarioA usuariosA=new ImplTextoUsuarioA();
-        try {
-            usuarios=usuariosA.getUsuarios();
-        } catch (IOException ex) {
-            Logger.getLogger(ServidorBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conexion();
+        //gestionCliente.
+        usr=srvA.solicitarUsuario(codigo);
         
-        for (int i = 0; i < usuarios.size(); i++) {
-            if(usuarios.get(i).getCodigo().equals(codigo)){
-               usr=new UsuarioA(usuarios.get(i).getNombre(),usuarios.get(i).getApellidos(),usuarios.get(i).getRol(),usuarios.get(i).getCodigo());
-            }
-        }
         return usr;
-    }*/
+    }
 
     
 }

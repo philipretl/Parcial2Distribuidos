@@ -20,7 +20,7 @@ import servidorA.ConexionSA;
  *
  * @author philipretl
  */
-public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt,SolicitudServidorA {
+public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
     ArrayList<AdministradorA> admins;
     ArrayList<UsuarioA> usuariosA;
     
