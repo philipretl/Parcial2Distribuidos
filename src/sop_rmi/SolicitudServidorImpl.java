@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servidorA.ConexionSA;
 import sop_rmi.SolicitudServidorInt;
 
 /**
@@ -20,14 +21,16 @@ import sop_rmi.SolicitudServidorInt;
  * @author Mauricio
  */
 public class SolicitudServidorImpl extends UnicastRemoteObject implements SolicitudServidorInt{
+    ConexionSA gui;
 
-
-    public SolicitudServidorImpl() throws RemoteException{
+    public SolicitudServidorImpl(ConexionSA gui) throws RemoteException{
         super();
+        this.gui=gui;
     }
     
     @Override
     public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
+        gui.consola("$ serverGestion: Solicitar Usuario ");
         UsuarioA usr = null;
         ArrayList<UsuarioA> usuarios = new ArrayList<>();
         ImplTextoUsuarioA usuariosA=new ImplTextoUsuarioA();

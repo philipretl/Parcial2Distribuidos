@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servidorB.ConexionSB;
 
 /**
  *
@@ -30,8 +31,9 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     String ip;
     int puerto;
     ArrayList<String> meses;
+    ConexionSB gui;
     
-    public GestionClienteImpl(String ip,int puerto) throws RemoteException{
+    public GestionClienteImpl(String ip,int puerto,ConexionSB gui) throws RemoteException{
         super();
         //semaforo=0;
         usuarios=new ArrayList<>();
@@ -39,11 +41,12 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         this.puerto=puerto;
         meses=new ArrayList<>();
         crearMeses();
+        this.gui=gui;
     }
 
     @Override
     public int ingresoUsuario(String codigo) throws RemoteException {
-        System.out.println("Ingreso usuario");
+        gui.consola("$ serverAcceso: Ingreso Usuario");
         try {
             cargarUsuarios();
         } catch (IOException ex) {
@@ -89,7 +92,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
 
     @Override
     public int salidaUsuario(String codigo) throws RemoteException {
-        
+         gui.consola("$ serverAcceso: Salida Usuario");
         try {
             cargarUsuarios();
         } catch (IOException ex) {
@@ -152,11 +155,13 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
 
     @Override
     public UsuarioB consultarUsuarioIngresado() throws RemoteException {
+         gui.consola("$ serverAcceso: Consultar Usuario Ingresado");
         return usrb;
     }
 
     @Override
     public UsuarioB consultarUsuarioSalida() throws RemoteException {
+        gui.consola("$ serverAcceso: Consultar Usuario Salida");
         return usrS;
     }
     
