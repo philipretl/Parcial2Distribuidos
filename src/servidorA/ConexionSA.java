@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 //import servidorA.ServidorDeObjetos;
 import servidorA.UtilidadesRegistroS;
 import sop_rmi.GestionAdmAImpl;
+import sop_rmi.SolicitudServidorImpl;
 
 /**
  *
@@ -183,9 +184,11 @@ public class ConexionSA extends javax.swing.JFrame {
         int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
         
         
-        GestionAdmAImpl objUsuario = null;        
+        GestionAdmAImpl objUsuario = null;
+        SolicitudServidorImpl objSolicitud = null;
         try {
             objUsuario = new GestionAdmAImpl();
+            objSolicitud=new SolicitudServidorImpl();
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -197,6 +200,7 @@ public class ConexionSA extends javax.swing.JFrame {
                     
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
            UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objSolicitud, direccionIpRMIRegistry, numPuertoRMIRegistry, "Solicitud");
       
 	} catch (Exception e)
         {

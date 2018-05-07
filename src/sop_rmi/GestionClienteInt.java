@@ -17,4 +17,5 @@ public interface GestionClienteInt extends Remote{
     int ingresoUsuario(String codigo) throws RemoteException;
     int salidaUsuario(String codigo) throws RemoteException;
     UsuarioB consultarUsuarioIngresado() throws RemoteException;
+    UsuarioB consultarUsuarioSalida() throws RemoteException;
 }
