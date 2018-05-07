@@ -20,13 +20,14 @@ import servidorA.ConexionSA;
  *
  * @author philipretl
  */
-public class ServidorAImpl extends UnicastRemoteObject implements GestionAdmAInt,SolicitudServidorInt {
+public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt,SolicitudServidorA {
     ArrayList<AdministradorA> admins;
     ArrayList<UsuarioA> usuariosA;
     
     ImplTextoUsuarioA txtA;
     ImplTextoAdministradorA txtAdm;
     ConexionSA gui;
+    
 
     
     public ServidorAImpl(ConexionSA gui) throws RemoteException, IOException {
@@ -123,7 +124,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements GestionAdmAInt
     }
     
     @Override
-    public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
+    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
         gui.consola("$ serverGestion: Solicitar Usuario");
         UsuarioA user=null;
         int pos;

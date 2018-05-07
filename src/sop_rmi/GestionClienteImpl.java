@@ -21,11 +21,11 @@ import servidorB.ConexionSB;
  *
  * @author Mauricio
  */
-public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt {
+public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt  {
     
     //private int semaforo;
     private ArrayList<UsuarioB> usuarios;
-    static SolicitudServidorInt srvA;
+    //static SolicitudServidorInt srvA;
     private UsuarioB usrb;
     private UsuarioB usrS;
     String ip;
@@ -141,7 +141,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     public UsuarioA conexionServidorA(String codigo) throws RemoteException{
         UsuarioA usuario;
         try{
-            srvA= (SolicitudServidorInt) cliente.UtilidadesRegistroC.obtenerObjRemoto(puerto, ip,"Solicitud");
+            srvA= (SolicitudServidorA) cliente.UtilidadesRegistroC.obtenerObjRemoto(puerto, ip,"Solicitud");
                             
                             
         }catch(Exception e){

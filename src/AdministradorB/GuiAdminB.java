@@ -21,7 +21,7 @@ import sop_rmi.*;
  */
 public class GuiAdminB extends javax.swing.JFrame {
     ConexionB loginB;
-    GestionAdmBInt srvB;
+    ServidorBInt srvB;
     AdministradorB adminB;
     AdministradorBCallbackInt objcllbck;
     /**
@@ -335,7 +335,7 @@ public class GuiAdminB extends javax.swing.JFrame {
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = Integer.parseInt(puerto);
             
-            srvB= (GestionAdmBInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorB");
+            srvB= (ServidorBInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorB");
             objcllbck=new AdministradorBCallbackImpl(this);
             srvB.registrarCallback(objcllbck);
             

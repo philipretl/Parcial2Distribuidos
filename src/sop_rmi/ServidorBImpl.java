@@ -19,30 +19,37 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import servidorB.ConexionSB;
+import servidorB.UtilidadesRegistroCB;
 
 /**
  *
  * @author philipretl
  */
-public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt,GestionClienteInt,SolicitudServidorInt{
+public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,GestionClienteInt,SolicitudServidorA{
     //Variables GestionAdministrador
+    //Int la interfaz que implementa.
     ArrayList<AdministradorB> admins;
     ArrayList<UsuarioB> usuariosB;
     ArrayList<AdministradorBCallbackInt> usuarioCllbck;
     ImplTextoUsuarioB txtU;
     ImplTextoAdministradorB txtA;
     ConexionSB gui;
+    String ipServidorA;
+    int puertoServidorA;
+    ServidorAInt srvA;
+    
+    
     
     //Variables GestionUsuario
     private ArrayList<UsuarioB> usuarios;
-    static ServidorAImpl srvA;
+    //static ServidorAImpl srvA; servicio de manzano
     private UsuarioB usrb;
     private UsuarioB usrS;
     ArrayList<String> meses;
     
     
     
-     public ServidorBImpl (ConexionSB gui) throws RemoteException, IOException {
+     public ServidorBImpl (ConexionSB gui,String ipPuertoA, int puertoServidorA) throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
@@ -54,7 +61,9 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
         meses=new ArrayList<>();
         crearMeses();
         this.gui=gui;
-                
+        
+        this.ipServidorA=ipServidorA;
+        this.puertoServidorA=puertoServidorA;
         
     }
     
@@ -64,6 +73,31 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
         admins= txtA.getAdministradores();
     }
     
+    public boolean conexion(String ip,String puerto){
+        boolean flag=true;
+        
+        System.out.println("ip: "+ ip + "puerto: " + puerto );
+        
+        try{
+            int numPuertoRMIRegistry=0;
+            String direccionIpRMIRegistry=ip;
+            numPuertoRMIRegistry = Integer.parseInt(puerto);
+            
+            srvA= (ServidorAInt) UtilidadesRegistroCB.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
+            
+            
+        }catch(Exception e){
+           
+            System.out.println("No se pudo registrar la conexion..." + flag);
+            System.out.println(e.getMessage());
+        } 
+        
+        if(srvA==null){
+            flag = false;
+        }
+    
+        return flag;
+    }
   
     
     @Override
@@ -180,7 +214,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
         }
         int retorno=0;
         Calendar calendario;
-        UsuarioA usr = soliciarUsuario(codigo);
+        UsuarioA usr = solicitarUsuario(codigo);
         
         //UsuarioA usr = null;
         if(usr==null){
@@ -241,7 +275,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
         int retorno = 0;
         int pos=-1;
         
-        UsuarioA usr = soliciarUsuario(codigo);
+        UsuarioA usr = solicitarUsuario(codigo);
         if(usr==null){
             retorno=1;//usuario no existe
         }else{
@@ -304,7 +338,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
         meses.add("Diciembre");
     }
     
-    @Override
+    /*@Override
     public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
         gui.consola("$ serverAcceso: Solicitar Usuario ");
         UsuarioA usr = null;
@@ -322,7 +356,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
             }
         }
         return usr;
-    }
+    }*/
 
     
 }

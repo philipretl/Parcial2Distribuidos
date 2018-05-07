@@ -52,6 +52,12 @@ public class ConexionSB extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtConsola = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblIp2 = new javax.swing.JLabel();
+        lblPuerto2 = new javax.swing.JLabel();
+        rbtnIp2 = new javax.swing.JRadioButton();
+        txtIp2 = new javax.swing.JTextField();
+        txtPuerto2 = new javax.swing.JTextField();
 
         jPanel6.setBackground(new java.awt.Color(29, 142, 255));
         jPanel6.setForeground(new java.awt.Color(29, 142, 255));
@@ -126,16 +132,25 @@ public class ConexionSB extends javax.swing.JFrame {
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
-        txtIp.setText("localhost");
-        txtIp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIpActionPerformed(evt);
+        txtIp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIpKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIpKeyReleased(evt);
             }
         });
 
         jLabel3.setText("Puerto del Rmi.Registry");
 
-        txtPuerto.setText("2020");
+        txtPuerto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPuertoKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPuertoKeyReleased(evt);
+            }
+        });
 
         btnConectar.setBackground(new java.awt.Color(106, 160, 213));
         btnConectar.setText("Arrancar");
@@ -170,7 +185,7 @@ public class ConexionSB extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -186,27 +201,57 @@ public class ConexionSB extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        lblIp2.setText("Direccion ip del Rmi.Registry");
+        lblIp2.setEnabled(false);
+
+        lblPuerto2.setText("Puerto del Rmi.Registry");
+        lblPuerto2.setEnabled(false);
+
+        rbtnIp2.setText("Direccion ip y/o puerto diferentes del servidor de gestion ");
+        rbtnIp2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnIp2ActionPerformed(evt);
+            }
+        });
+
+        txtIp2.setEnabled(false);
+
+        txtPuerto2.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtnIp2)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPuerto2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                .addComponent(txtIp2, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPuerto)
-                            .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPuerto)
+                                    .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblIp2)
+                            .addComponent(lblPuerto2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,11 +264,24 @@ public class ConexionSB extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(rbtnIp2)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblIp2)
+                            .addComponent(txtIp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPuerto2)
+                            .addComponent(txtPuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConectar)
                     .addComponent(btnSalir))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
 
@@ -254,13 +312,15 @@ public class ConexionSB extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean flag;
         String direccionIpRMIRegistry = txtIp.getText(); 
-        int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
+        int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());
+        String ipServidorA=txtIp2.getText();
+        int puertoServidorA=Integer.parseInt(txtPuerto2.getText());
         
         
         
             try
             {
-                ServidorBImpl objUsuario =new ServidorBImpl(this);
+               ServidorBImpl objUsuario =new ServidorBImpl(this,ipServidorA,puertoServidorA);
                this.consola("intentado registrar objeto remoto");
                UtilidadesRegistroSB.arrancarNS(numPuertoRMIRegistry,this);
                UtilidadesRegistroSB.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB",this);
@@ -277,14 +337,52 @@ public class ConexionSB extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConectarActionPerformed
 
-    private void txtIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIpActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void rbtnIp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnIp2ActionPerformed
+        // TODO add your handling code here:
+        if(!rbtnIp2.isSelected()){
+            lblIp2.setEnabled(!true);
+            lblPuerto2.setEnabled(!true);
+            txtIp2.setEnabled(!true);
+            txtPuerto2.setEnabled(!true);
+        }else{
+            lblIp2.setEnabled(true);
+            lblPuerto2.setEnabled(true);
+            txtIp2.setEnabled(true);
+            txtPuerto2.setEnabled(true);
+       
+        }
+    }//GEN-LAST:event_rbtnIp2ActionPerformed
+
+    private void txtIpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIpKeyTyped
+        // TODO add your handling code here:
+         txtIp2.setText(txtIp.getText());
+         txtIp2.setText(txtIp.getText());
+    }//GEN-LAST:event_txtIpKeyTyped
+
+    private void txtPuertoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPuertoKeyTyped
+        // TODO add your handling code here:
+        txtPuerto2.setText(txtPuerto.getText());
+        txtPuerto2.setText(txtPuerto.getText());
+        
+        //txtPuertoKeyReleased(evt);
+        
+                                     
+    }//GEN-LAST:event_txtPuertoKeyTyped
+
+    private void txtPuertoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPuertoKeyReleased
+        // TODO add your handling code here:
+         txtPuerto2.setText(txtPuerto.getText());
+    }//GEN-LAST:event_txtPuertoKeyReleased
+
+    private void txtIpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIpKeyReleased
+        // TODO add your handling code here:
+        txtIp2.setText(txtIp.getText());
+    }//GEN-LAST:event_txtIpKeyReleased
 
     /**
      * @param args the command line arguments
@@ -351,9 +449,15 @@ public class ConexionSB extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel lblIp2;
+    private javax.swing.JLabel lblPuerto2;
+    private javax.swing.JRadioButton rbtnIp2;
     private javax.swing.JTextArea txtConsola;
     private javax.swing.JTextField txtIp;
+    private javax.swing.JTextField txtIp2;
     private javax.swing.JTextField txtPuerto;
+    private javax.swing.JTextField txtPuerto2;
     // End of variables declaration//GEN-END:variables
 }

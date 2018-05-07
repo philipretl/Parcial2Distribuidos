@@ -21,7 +21,7 @@ import sop_rmi.*;
  */
 public class GuiAdminA extends javax.swing.JFrame {
     ConexionA loginA;
-    GestionAdmAInt srvA;
+    ServidorAInt srvA;
     AdministradorA adminA;
     String antiguo;
     /**
@@ -547,7 +547,7 @@ public class GuiAdminA extends javax.swing.JFrame {
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = Integer.parseInt(puerto);
             
-            srvA= (GestionAdmAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
+            srvA= (ServidorAInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorA");
             
             
         }catch(Exception e){
@@ -1246,7 +1246,7 @@ public class GuiAdminA extends javax.swing.JFrame {
             }else{
                 lblCodigo.setEnabled(false);
                 txtCodigo.setEnabled(false);
-                UsuarioA user = srvA.soliciarUsuario(codigo);
+                UsuarioA user = srvA.solicitarUsuario(codigo);
                 antiguo=user.getCodigo();
                 rbtnCodigo.setVisible(true);
                 rbtnNombres.setVisible(true);
