@@ -13,5 +13,5 @@ import java.rmi.RemoteException;
  * @author Mauricio
  */
 public interface CallbackInt extends Remote{
-    String notificarIngreso() throws RemoteException;
+    void notificarIngreso() throws RemoteException;
 }

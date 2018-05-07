@@ -19,4 +19,5 @@ public interface GestionAdmBInt extends Remote {
     boolean AccesoAdministrador(AdministradorB adminB) throws RemoteException;
     ArrayList<UsuarioB> ConsultarUsuariosIngresados() throws RemoteException;
     boolean modificarCredenciales(String antiguo,String login, String pass, int opcion) throws RemoteException;
+    boolean registrarCallback(CallbackInt objcllbck) throws RemoteException;
 }

@@ -14,10 +14,19 @@ import sop_rmi.CallbackInt;
  * @author Mauricio
  */
 public class CallbackImpl extends UnicastRemoteObject implements CallbackInt{
+    
+    private GuiAdminB guiA;
+
+    public CallbackImpl(GuiAdminB guiA) throws RemoteException {
+        super();
+        this.guiA=guiA;
+    }
+    
+    
 
     @Override
-    public String notificarIngreso() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void notificarIngreso() throws RemoteException {
+        
     }
     
 }

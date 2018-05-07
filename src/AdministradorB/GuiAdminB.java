@@ -23,6 +23,7 @@ public class GuiAdminB extends javax.swing.JFrame {
     ConexionB loginB;
     GestionAdmBInt srvB;
     AdministradorB adminB;
+    CallbackInt objcllbck;
     /**
      * Creates new form GuiCliente
      */
@@ -319,6 +320,7 @@ public class GuiAdminB extends javax.swing.JFrame {
             numPuertoRMIRegistry = Integer.parseInt(puerto);
             
             srvB= (GestionAdmBInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorB");
+            objcllbck=new CallbackImpl(this);
             
             
         }catch(Exception e){
