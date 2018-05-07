@@ -496,7 +496,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administracion Servidor Control Salida y Entrada"/>
+            <Property name="text" type="java.lang.String" value="Administracion Servidor Gestion Usuarios"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">

@@ -339,7 +339,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(71, 160, 249));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setText("Administracion Servidor Control Salida y Entrada");
+        jLabel1.setText("Administracion Servidor Gestion Usuarios");
 
         txtUser.setText("aaaaaaaa");
         txtUser.addActionListener(new java.awt.event.ActionListener() {
