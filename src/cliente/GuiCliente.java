@@ -7,6 +7,7 @@ package cliente;
 
 import AdministradorB.UsuarioB;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sop_rmi.GestionClienteInt;
@@ -19,6 +20,7 @@ public class GuiCliente extends javax.swing.JFrame {
     
     GestionClienteInt srvB;
     ConexionC loginC;
+    
 
     /**
      * Creates new form GuiCliente
@@ -27,7 +29,9 @@ public class GuiCliente extends javax.swing.JFrame {
         initComponents();
         loginC = new ConexionC(this);
         loginC.setVisible(true);
+        
     }
+    
     
     public boolean conexion(String ip,String puerto){
         boolean flag=true;
@@ -53,6 +57,11 @@ public class GuiCliente extends javax.swing.JFrame {
         }
     
         return flag;
+    }
+    
+    private void limpiarCampos(){
+        txtCodigoI.setText("");
+        txtCodigoS.setText("");
     }
 
     /**
@@ -326,8 +335,39 @@ public class GuiCliente extends javax.swing.JFrame {
                 
                 try {
                     res = srvB.salidaUsuario(txtCodigoS.getText());
+                    
                 } catch (RemoteException ex) {
                     Logger.getLogger(GuiCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                switch(res){
+                    case 1:
+                        txtConsola.setText("$ Acceso denegado, código no registrado, por favor contacte al administrador de la aplicación");
+                        limpiarCampos();
+                        break;
+                    case 2:
+                        txtConsola.setText("$ Violacion de seguridad, ya se encuentra dentro de las instalaciones");
+                        limpiarCampos();
+                        break;
+                    case 3:
+                        String cadena="$ Salida concedida\n";
+                        UsuarioB usuarioSalida = null;
+                    {
+                        try {
+                            usuarioSalida = srvB.consultarUsuarioSalida();
+                        } catch (RemoteException ex) {
+                            Logger.getLogger(GuiCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        cadena=cadena+usuarioSalida.getRol()+"\n";
+                        cadena=cadena+usuarioSalida.getNombre()+" "+usuarioSalida.getApellidos()+"\n";
+                        cadena=cadena+usuarioSalida.getHora()+" "+usuarioSalida.getFecha();
+                        txtConsola.setText(cadena);
+                        limpiarCampos();
+                        break;
+                    default:
+                        break;
+                    
                 }
             }
         }
@@ -352,9 +392,11 @@ public class GuiCliente extends javax.swing.JFrame {
                 switch(res){
                     case 1:
                         txtConsola.setText("$ Acceso denegado, código no registrado, por favor contacte al administrador de la aplicación");
+                        limpiarCampos();
                         break;
                     case 2:
                         txtConsola.setText("$ Violacion de seguridad, ya se encuentra en el interior de las instalaciones");
+                        limpiarCampos();
                         break;
                     case 3:
                         String cadena="$ Acceso concedido\n";
@@ -370,6 +412,7 @@ public class GuiCliente extends javax.swing.JFrame {
                         cadena=cadena+usuarioIngresado.getNombre()+" "+usuarioIngresado.getApellidos()+"\n";
                         cadena=cadena+usuarioIngresado.getHora()+" "+usuarioIngresado.getFecha();
                         txtConsola.setText(cadena);
+                        limpiarCampos();
                         break;
                     default:
                         break;
