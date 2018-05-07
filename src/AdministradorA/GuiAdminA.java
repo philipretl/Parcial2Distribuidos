@@ -5,7 +5,7 @@
  */
 package AdministradorA;
 
-import sop_rmi.GestionAdmAImpl;
+import sop_rmi.ServidorAImpl;
 import java.awt.BorderLayout;
 import java.rmi.RemoteException;
 import java.util.ArrayList;

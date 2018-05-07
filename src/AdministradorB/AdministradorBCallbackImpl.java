@@ -7,8 +7,6 @@ package AdministradorB;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import sop_rmi.GestionClienteImpl;
-import sop_rmi.GestionClienteInt;
 import sop_rmi.AdministradorBCallbackInt;
 
 /**
@@ -27,7 +25,8 @@ public class AdministradorBCallbackImpl extends UnicastRemoteObject implements A
 
     @Override
     public void notificarIngresoServidor(String datosUsuarioIngreso) throws RemoteException {
-        String cadena="Ingreso:"+datosUsuarioIngreso;
+        String cadena="Ultimo Ingreso: "+datosUsuarioIngreso;
+        //System.out.println("cadena que llega: "+cadena);
         guiA.fijarCambios(cadena);
     }
     

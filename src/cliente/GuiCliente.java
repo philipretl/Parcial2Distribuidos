@@ -43,7 +43,7 @@ public class GuiCliente extends javax.swing.JFrame {
             String direccionIpRMIRegistry=ip;
             numPuertoRMIRegistry = Integer.parseInt(puerto);
             
-            srvB= (GestionClienteInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"GestionCliente");
+            srvB= (GestionClienteInt) UtilidadesRegistroC.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorB");
             
             
         }catch(Exception e){

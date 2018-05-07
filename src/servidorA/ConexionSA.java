@@ -5,17 +5,13 @@
  */
 package servidorA;
 
-import servidorB.*;
-import AdministradorA.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 //import servidorA.ServidorDeObjetos;
 import servidorA.UtilidadesRegistroSA;
-import sop_rmi.GestionAdmAImpl;
-import sop_rmi.SolicitudServidorImpl;
+import sop_rmi.ServidorAImpl;
 
 /**
  *
@@ -232,11 +228,9 @@ public class ConexionSA extends javax.swing.JFrame {
         int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
         
         
-        GestionAdmAImpl objUsuario = null;
-        SolicitudServidorImpl objSolicitud = null;
+        ServidorAImpl objUsuario = null;
         try {
-            objUsuario = new GestionAdmAImpl(this);
-            objSolicitud=new SolicitudServidorImpl(this);
+            objUsuario = new ServidorAImpl(this);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -247,8 +241,7 @@ public class ConexionSA extends javax.swing.JFrame {
         {
                     
            UtilidadesRegistroSA.arrancarNS(numPuertoRMIRegistry,this);
-           UtilidadesRegistroSA.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
-           UtilidadesRegistroSA.RegistrarObjetoRemoto(objSolicitud, direccionIpRMIRegistry, numPuertoRMIRegistry, "Solicitud");
+           UtilidadesRegistroSA.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");          
       
 	} catch (Exception e)
         {
