@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.DefaultCaret;
 //import servidorA.ServidorDeObjetos;
 import servidorA.UtilidadesRegistroSA;
 import sop_rmi.ServidorAImpl;
@@ -26,6 +27,8 @@ public class ConexionSA extends javax.swing.JFrame {
     public ConexionSA() {
         initComponents();
         cadena="";
+        DefaultCaret caret = (DefaultCaret)txtConsola.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
     }
     

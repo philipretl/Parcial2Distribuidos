@@ -8,6 +8,7 @@ package servidorB;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.DefaultCaret;
 import sop_rmi.ServidorBImpl;
 
 /**
@@ -22,6 +23,8 @@ public class ConexionSB extends javax.swing.JFrame {
     public ConexionSB() {
         initComponents();
         cadena="";
+        DefaultCaret caret = (DefaultCaret)txtConsola.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
     }
     

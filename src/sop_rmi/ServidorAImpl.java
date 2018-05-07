@@ -176,7 +176,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
                     case 2:
                         if(pass.length()>=8 & pass.length()<=15 & login.length()>=8 & login.length()<=15){
                             admins.get(i).setLogin(login);
-                            admins.get(i).setClave(login);
+                            admins.get(i).setClave(pass);
                             flag=true;
                         }   
                         break;

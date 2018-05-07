@@ -329,10 +329,10 @@ public class GuiCliente extends javax.swing.JFrame {
         if(txtCodigoS.getText().equals("")){
             txtConsola.setText("$ Error, el codigo no puede ser vacio");
         }else{
-            if(txtCodigoS.getText().length()<8 && txtCodigoS.getText().length()<15){
-                txtConsola.setText("$ Error, el codigo debe tener entre 8 y 15 caracteres");
+            if(txtCodigoS.getText().length()!=8){
+                txtConsola.setText("$ Error, el codigo debe tener exactamente 8 caracteres");
             }else{
-                
+               
                 try {
                     res = srvB.salidaUsuario(txtCodigoS.getText());
                     
@@ -346,7 +346,7 @@ public class GuiCliente extends javax.swing.JFrame {
                         limpiarCampos();
                         break;
                     case 2:
-                        txtConsola.setText("$ Violacion de seguridad, ya se encuentra dentro de las instalaciones");
+                        txtConsola.setText("$ Violacion de seguridad, usted No se encuentra dentro de las instalaciones");
                         limpiarCampos();
                         break;
                     case 3:
@@ -381,8 +381,8 @@ public class GuiCliente extends javax.swing.JFrame {
         if(txtCodigoI.getText().equals("")){
             txtConsola.setText("$ Error, el codigo no puede ser vacio");
         }else{
-            if(txtCodigoI.getText().length()<8 && txtCodigoI.getText().length()<15){
-                txtConsola.setText("$ Error, el codigo debe tener entre 8 y 15 caracteres");
+            if(txtCodigoI.getText().length()!=8){
+                txtConsola.setText("$ Error, el codigo debe tener exactamente 8 caracteres");
             }else{
                 try {
                     res=srvB.ingresoUsuario(txtCodigoI.getText());
