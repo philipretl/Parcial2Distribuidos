@@ -18,12 +18,15 @@ import sop_rmi.GestionClienteInt;
 public class GuiCliente extends javax.swing.JFrame {
     
     GestionClienteInt srvB;
+    ConexionC loginC;
 
     /**
      * Creates new form GuiCliente
      */
     public GuiCliente() {
         initComponents();
+        loginC = new ConexionC(this);
+        loginC.setVisible(true);
     }
     
     public boolean conexion(String ip,String puerto){
@@ -405,7 +408,7 @@ public class GuiCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiCliente().setVisible(true);
+                new GuiCliente().setVisible(false);
             }
         });
     }

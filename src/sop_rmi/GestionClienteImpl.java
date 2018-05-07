@@ -39,6 +39,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
 
     @Override
     public int ingresoUsuario(String codigo) throws RemoteException {
+        System.out.println("Ingreso usuario");
         try {
             cargarUsuarios();
         } catch (IOException ex) {
