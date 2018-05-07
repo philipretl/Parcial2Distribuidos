@@ -139,7 +139,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
 
     @Override
     public void registrarCallback(AdministradorBCallbackInt objcllbck) throws RemoteException {
-        gui.consola("$ serverGestion: registrar callback");
+        gui.consola("$ serverAcceso: registrar callback");
         boolean registro=false;
         if(!usuarioCllbck.contains(objcllbck)){
             registro=usuarioCllbck.add(objcllbck);
@@ -306,7 +306,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements GestionAdmBInt
     
     @Override
     public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
-        gui.consola("$ serverGestion: Solicitar Usuario ");
+        gui.consola("$ serverAcceso: Solicitar Usuario ");
         UsuarioA usr = null;
         ArrayList<UsuarioA> usuarios = new ArrayList<>();
         ImplTextoUsuarioA usuariosA=new ImplTextoUsuarioA();
