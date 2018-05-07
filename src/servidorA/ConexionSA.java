@@ -245,7 +245,7 @@ public class ConexionSA extends javax.swing.JFrame {
       
 	} catch (Exception e)
         {
-            System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
+           consola("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
         }
         
         

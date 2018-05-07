@@ -15,7 +15,7 @@ import sop_rmi.ServidorBImpl;
  * @author philipretl
  */
 public class ConexionSB extends javax.swing.JFrame {
-    String cadena;
+    private String cadena;
     /**
      * Creates new form Login
      */
@@ -257,26 +257,20 @@ public class ConexionSB extends javax.swing.JFrame {
         int numPuertoRMIRegistry = Integer.parseInt(txtPuerto.getText());		
         
         
-        ServidorBImpl objUsuario = null;
-           
-        try {
-            objUsuario = new ServidorBImpl(this);
-        } catch (IOException ex) {
-            Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
         
-        try
-        {
-                    
-           UtilidadesRegistroSB.arrancarNS(numPuertoRMIRegistry,this);
-           UtilidadesRegistroSB.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");
-                     
-      
-	} catch (Exception e)
-        {
-            System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
-        }
+            try
+            {
+                ServidorBImpl objUsuario =new ServidorBImpl(this);
+               this.consola("intentado registrar objeto remoto");
+               UtilidadesRegistroSB.arrancarNS(numPuertoRMIRegistry,this);
+               UtilidadesRegistroSB.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB",this);
+
+
+            } catch (Exception e)
+            {
+                consola("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
+            }
+        
         
         
         

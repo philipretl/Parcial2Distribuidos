@@ -21,7 +21,7 @@ public class UtilidadesRegistroSA
 		{
                         
 			Registry registro = LocateRegistry.getRegistry(numPuertoRMI);  
-            String[] nombresLigados= registro.list();
+                         String[] nombresLigados= registro.list();
                         
             //System.out.println("El registro se ha obtenido y se encuentra escuchando en el puerto: " + numPuertoRMI); 
 		UtilidadesRegistroSA.gui.consola("El registro se ha obtenido y se encuentra escuchando en el puerto: " + numPuertoRMI);
