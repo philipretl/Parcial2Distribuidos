@@ -79,6 +79,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
                 ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
                 try {
                     atxt.guardarUsuarios(usuarios);
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(GestionClienteImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
