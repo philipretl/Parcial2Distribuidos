@@ -146,6 +146,11 @@ public class ConexionC extends javax.swing.JFrame {
 
         btnSalir.setBackground(new java.awt.Color(106, 160, 213));
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(29, 142, 255));
         jPanel6.setForeground(new java.awt.Color(29, 142, 255));
@@ -265,6 +270,11 @@ public class ConexionC extends javax.swing.JFrame {
     private void txtIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIpActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
