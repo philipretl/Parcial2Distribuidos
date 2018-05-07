@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 //import servidorA.ServidorDeObjetos;
-import servidorA.UtilidadesRegistroS;
+import servidorA.UtilidadesRegistroSA;
 import sop_rmi.GestionAdmAImpl;
 import sop_rmi.SolicitudServidorImpl;
 
@@ -26,9 +26,10 @@ public class ConexionSA extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    String cadena;
     public ConexionSA() {
         initComponents();
-        
+        cadena="";
         
     }
     
@@ -53,7 +54,7 @@ public class ConexionSA extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtConsola = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,13 +74,14 @@ public class ConexionSA extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(120, 120, 120))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +90,7 @@ public class ConexionSA extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,9 +128,9 @@ public class ConexionSA extends javax.swing.JFrame {
         jPanel6.setForeground(new java.awt.Color(29, 142, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(366, 266));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txtConsola.setColumns(20);
+        txtConsola.setRows(5);
+        jScrollPane2.setViewportView(txtConsola);
 
         jLabel8.setText("Consola");
 
@@ -139,7 +141,7 @@ public class ConexionSA extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -151,8 +153,8 @@ public class ConexionSA extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -175,7 +177,7 @@ public class ConexionSA extends javax.swing.JFrame {
                             .addComponent(txtPuerto)
                             .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,9 +195,9 @@ public class ConexionSA extends javax.swing.JFrame {
                     .addComponent(btnConectar)
                     .addComponent(btnSalir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,13 +211,20 @@ public class ConexionSA extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void consola(String texto){
+        cadena=cadena + "\n$ " + texto;
+        
+        txtConsola.setText(cadena);
+    
+    }
+    
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
         boolean flag;
@@ -226,8 +235,8 @@ public class ConexionSA extends javax.swing.JFrame {
         GestionAdmAImpl objUsuario = null;
         SolicitudServidorImpl objSolicitud = null;
         try {
-            objUsuario = new GestionAdmAImpl();
-            objSolicitud=new SolicitudServidorImpl();
+            objUsuario = new GestionAdmAImpl(this);
+            objSolicitud=new SolicitudServidorImpl(this);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -237,9 +246,9 @@ public class ConexionSA extends javax.swing.JFrame {
         try
         {
                     
-           UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objSolicitud, direccionIpRMIRegistry, numPuertoRMIRegistry, "Solicitud");
+           UtilidadesRegistroSA.arrancarNS(numPuertoRMIRegistry,this);
+           UtilidadesRegistroSA.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorA");           
+           UtilidadesRegistroSA.RegistrarObjetoRemoto(objSolicitud, direccionIpRMIRegistry, numPuertoRMIRegistry, "Solicitud");
       
 	} catch (Exception e)
         {
@@ -322,7 +331,7 @@ public class ConexionSA extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea txtConsola;
     private javax.swing.JTextField txtIp;
     private javax.swing.JTextField txtPuerto;
     // End of variables declaration//GEN-END:variables

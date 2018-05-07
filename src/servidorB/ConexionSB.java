@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import servidorA.UtilidadesRegistroS;
+import servidorA.UtilidadesRegistroSA;
 import sop_rmi.GestionAdmAImpl;
 import sop_rmi.GestionAdmBInt;
 import sop_rmi.GestionAdminBImpl;
@@ -23,13 +23,13 @@ import sop_rmi.GestionClienteInt;
  * @author philipretl
  */
 public class ConexionSB extends javax.swing.JFrame {
-
+    String cadena;
     /**
      * Creates new form Login
      */
     public ConexionSB() {
         initComponents();
-        
+        cadena="";
         
     }
     
@@ -58,7 +58,7 @@ public class ConexionSB extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtConsola = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
 
         jPanel6.setBackground(new java.awt.Color(29, 142, 255));
@@ -111,13 +111,14 @@ public class ConexionSB extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(120, 120, 120))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +165,9 @@ public class ConexionSB extends javax.swing.JFrame {
         jPanel7.setForeground(new java.awt.Color(29, 142, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(366, 266));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        txtConsola.setColumns(20);
+        txtConsola.setRows(5);
+        jScrollPane3.setViewportView(txtConsola);
 
         jLabel9.setText("Consola");
 
@@ -177,7 +178,7 @@ public class ConexionSB extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -189,8 +190,8 @@ public class ConexionSB extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -213,7 +214,7 @@ public class ConexionSB extends javax.swing.JFrame {
                             .addComponent(txtPuerto)
                             .addComponent(txtIp, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,10 +231,8 @@ public class ConexionSB extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConectar)
                     .addComponent(btnSalir))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,7 +252,12 @@ public class ConexionSB extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void consola(String texto){
+        cadena=cadena + "\n$ " + texto;
+        
+        txtConsola.setText(cadena);
+    
+    }
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
         boolean flag;
@@ -265,7 +269,7 @@ public class ConexionSB extends javax.swing.JFrame {
         GestionClienteInt objCliente = null;
         try {
            
-            objCliente = new GestionClienteImpl(direccionIpRMIRegistry,numPuertoRMIRegistry);
+            objCliente = new GestionClienteImpl(direccionIpRMIRegistry,numPuertoRMIRegistry,this);
         } catch (RemoteException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -273,16 +277,16 @@ public class ConexionSB extends javax.swing.JFrame {
         }
         
         try {
-            objUsuario = new GestionAdminBImpl();
+            objUsuario = new GestionAdminBImpl(this);
         } catch (IOException ex) {
             Logger.getLogger(ConexionSB.class.getName()).log(Level.SEVERE, null, ex);
         }
         try
         {
                     
-           UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objCliente, direccionIpRMIRegistry, numPuertoRMIRegistry, "GestionCliente");           
+           UtilidadesRegistroSB.arrancarNS(numPuertoRMIRegistry,this);
+           UtilidadesRegistroSB.RegistrarObjetoRemoto(objUsuario, direccionIpRMIRegistry, numPuertoRMIRegistry, "ServidorB");
+           UtilidadesRegistroSB.RegistrarObjetoRemoto(objCliente, direccionIpRMIRegistry, numPuertoRMIRegistry, "GestionCliente");           
       
 	} catch (Exception e)
         {
@@ -369,7 +373,7 @@ public class ConexionSB extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea txtConsola;
     private javax.swing.JTextField txtIp;
     private javax.swing.JTextField txtPuerto;
     // End of variables declaration//GEN-END:variables

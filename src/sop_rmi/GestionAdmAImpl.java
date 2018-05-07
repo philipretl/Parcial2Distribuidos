@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servidorA.ConexionSA;
 
 /**
  *
@@ -25,16 +26,17 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     
     ImplTextoUsuarioA txtA;
     ImplTextoAdministradorA txtAdm;
-    
+    ConexionSA gui;
 
     
-    public GestionAdmAImpl() throws RemoteException, IOException {
+    public GestionAdmAImpl(ConexionSA gui) throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosA = new ArrayList();
         txtA=new ImplTextoUsuarioA();
         txtAdm=new ImplTextoAdministradorA();
         rellenar();
+        this.gui=gui;
         
     }
     
@@ -49,6 +51,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     @Override
     public boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException {
         //System.out.println("$ server: Acceso a administrador" + adminA.getLogin() + adminA.getClave());
+        gui.consola("$ serverGestion: Agregar Administrador");
         boolean flag = false;
         for (int i = 0; i < admins.size(); i++) {
             if(adminA.getLogin().equals(admins.get(i).getLogin()) && adminA.getClave().equals(admins.get(i).getClave())){
@@ -61,7 +64,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     
     @Override
     public boolean ModificarUsuario(String viejo,UsuarioA user) throws RemoteException {
-       
+        gui.consola("$ serverGestion: Modificar Usuario");
        boolean flag=false;
        int pos;
        pos=buscarUsuario(viejo);
@@ -80,6 +83,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
 
     @Override
     public boolean BorrarUsuario(String codigo) throws RemoteException {
+        gui.consola("$ serverGestion: Borrar Usuario");
         boolean flag=false;
         int pos;
         
@@ -99,6 +103,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
 
     @Override
     public boolean RegistrarUsuario(UsuarioA user) throws RemoteException {
+        gui.consola("$ serverGestion: Registrar Usuario");
         boolean flag=false;
         int pos;
         
@@ -119,6 +124,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     
     @Override
     public UsuarioA soliciarUsuario(String codigo) throws RemoteException {
+        gui.consola("$ serverGestion: Solicitar Usuario");
         UsuarioA user=null;
         int pos;
         pos=buscarUsuario(codigo);
@@ -132,6 +138,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
     }
     @Override
     public int buscarUsuario(String codigo){
+        gui.consola("$ serverGestion: Buscar Usuario");
         int pos=-1;
         for (int i = 0; i <usuariosA.size(); i++) {
             if(usuariosA.get(i).getCodigo().equals(codigo)){
@@ -145,6 +152,7 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
 
     @Override
     public boolean modificarCredenciales(String antiguo, String login, String pass, int opcion) throws RemoteException {
+        gui.consola("$ serverGestion: Modificar Credenciales");
         boolean flag=false;
         
         for (int i = 0; i < admins.size(); i++) {

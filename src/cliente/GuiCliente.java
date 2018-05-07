@@ -324,6 +324,7 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnConfirmarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarSActionPerformed
         // TODO add your handling code here:
+        btnConfirmarS.setSelected(false);
         int res=0;
         if(txtCodigoS.getText().equals("")){
             txtConsola.setText("$ Error, el codigo no puede ser vacio");
@@ -375,6 +376,7 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnConfirmarIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarIActionPerformed
         // TODO add your handling code here:
+        btnConfirmarI.setSelected(false);
         int res=0;
         if(txtCodigoI.getText().equals("")){
             txtConsola.setText("$ Error, el codigo no puede ser vacio");

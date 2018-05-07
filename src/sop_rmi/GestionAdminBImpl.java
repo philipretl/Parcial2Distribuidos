@@ -15,6 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servidorB.ConexionSB;
 
 /**
  *
@@ -25,37 +26,22 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
     ArrayList<UsuarioB> usuariosB;
     ImplTextoUsuarioB txtU;
     ImplTextoAdministradorB txtA;
+    ConexionSB gui;
     
-     public GestionAdminBImpl () throws RemoteException, IOException {
+     public GestionAdminBImpl (ConexionSB gui) throws RemoteException, IOException {
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
         txtU= new ImplTextoUsuarioB();
         txtA= new ImplTextoAdministradorB();
         rellenar();
+        this.gui=gui;
                 
         
     }
     
     
-    public void rellenar() throws IOException{// borrar esta mierda
-        /*AdministradorB admin1= new AdministradorB("aaaaaaaa","aaaaaaaa");
-        AdministradorB admin2= new AdministradorB("bbbbbbbb","bbbbbbbb");
-        admins.add(admin1);
-        admins.add(admin2);
-        
-        txtA.guardarAdministradores(admins);
-
-        UsuarioB user1 = new UsuarioB("Carlos","Perez","Administrativo","ccccccccc","1 am","24/02/18");
-        UsuarioB user2 = new UsuarioB("Andres","Vega","Estudiante","dddddddd","2 am","24/02/18");
-        UsuarioB user3 = new UsuarioB("Mauricio","Manzano","Profesor","eeeeeeee","3 am","24/02/18");
-        usuariosB.add(user1);
-        usuariosB.add(user2);
-        usuariosB.add(user3);
-        
-        txtU.guardarUsuarios(usuariosB);
-        */
-        
+    public void rellenar() throws IOException{
         usuariosB=txtU.getUsuarios();
         admins= txtA.getAdministradores();
     }
@@ -64,7 +50,7 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
     
     @Override
     public boolean AccesoAdministrador(AdministradorB adminB) throws RemoteException {
-        System.out.println("$ serverB: Acceso a administrador" + adminB.getLogin() + adminB.getClave());
+        gui.consola("$ serverAcceso: Acceso Administrador");
         boolean flag = false;
         for (int i = 0; i < admins.size(); i++) {
             if(adminB.getLogin().equals(admins.get(i).getLogin()) && adminB.getClave().equals(admins.get(i).getClave())){
@@ -76,6 +62,7 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
 
     @Override
     public ArrayList<UsuarioB> ConsultarUsuariosIngresados() {
+         gui.consola("$ serverAcceso: Consultar Usuarios Ingresados");
         try {
             usuariosB=txtU.getUsuarios();
         } catch (IOException ex) {
@@ -86,6 +73,7 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
 
     @Override
     public boolean modificarCredenciales(String antiguo, String login, String pass, int opcion) throws RemoteException {
+         gui.consola("$ serverAcceso: Modificar Credenciales");
         boolean flag=false;
         
         for (int i = 0; i < admins.size(); i++) {
