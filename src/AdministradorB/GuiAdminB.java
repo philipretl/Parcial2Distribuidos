@@ -23,7 +23,7 @@ public class GuiAdminB extends javax.swing.JFrame {
     ConexionB loginB;
     GestionAdmBInt srvB;
     AdministradorB adminB;
-    CallbackInt objcllbck;
+    AdministradorBCallbackInt objcllbck;
     /**
      * Creates new form GuiCliente
      */
@@ -336,7 +336,8 @@ public class GuiAdminB extends javax.swing.JFrame {
             numPuertoRMIRegistry = Integer.parseInt(puerto);
             
             srvB= (GestionAdmBInt) UtilidadesRegistroCAdminA.obtenerObjRemoto(numPuertoRMIRegistry, direccionIpRMIRegistry,"ServidorB");
-            objcllbck=new CallbackImpl(this);
+            objcllbck=new AdministradorBCallbackImpl(this);
+            srvB.registrarCallback(objcllbck);
             
             
         }catch(Exception e){
@@ -352,7 +353,9 @@ public class GuiAdminB extends javax.swing.JFrame {
         return flag;
     }
     
-    
+    public void fijarCambios(String datos){
+        txtConsolaCon.setText(datos);
+    }
          private void activarGenerales(){
         txtConsola.setText("$ Opciones generales activadas");
         txtUser.setEnabled(!true);

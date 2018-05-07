@@ -84,6 +84,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
                 }
             
                 retorno=3;//Usuario pudo ingresar
+                
             }
         }
         

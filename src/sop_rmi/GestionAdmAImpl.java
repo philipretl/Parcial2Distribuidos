@@ -185,7 +185,11 @@ public class GestionAdmAImpl extends UnicastRemoteObject implements GestionAdmAI
                 break;
             }
         }
-        
+        try {
+            txtAdm.guardarAdministradores(admins);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionAdmAImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return flag;
     
     }

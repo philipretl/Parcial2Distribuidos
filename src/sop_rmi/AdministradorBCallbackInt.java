@@ -12,6 +12,6 @@ import java.rmi.RemoteException;
  *
  * @author Mauricio
  */
-public interface CallbackInt extends Remote{
-    void notificarIngreso() throws RemoteException;
+public interface AdministradorBCallbackInt extends Remote{
+     void notificarIngresoServidor(String datosUsuarioIngreso) throws RemoteException;
 }

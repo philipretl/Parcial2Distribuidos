@@ -24,6 +24,7 @@ import servidorB.ConexionSB;
 public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdmBInt{
     ArrayList<AdministradorB> admins;
     ArrayList<UsuarioB> usuariosB;
+    ArrayList<AdministradorBCallbackInt> usuarioCllbck;
     ImplTextoUsuarioB txtU;
     ImplTextoAdministradorB txtA;
     ConexionSB gui;
@@ -32,6 +33,7 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
         super();
         admins = new ArrayList();
         usuariosB= new ArrayList();
+        usuarioCllbck= new ArrayList<>();
         txtU= new ImplTextoUsuarioB();
         txtA= new ImplTextoAdministradorB();
         rellenar();
@@ -119,5 +121,30 @@ public class GestionAdminBImpl extends UnicastRemoteObject implements GestionAdm
         
     }
 
+    @Override
+    public synchronized void registrarCallback(AdministradorBCallbackInt objcllbck) throws RemoteException {
+        boolean registro=false;
+        if(!usuarioCllbck.contains(objcllbck)){
+            registro=usuarioCllbck.add(objcllbck);
+        }
+        doCallbacks();
+        if(registro){
+            System.out.println("El cambio se registro");      
+        }else{
+            System.out.println("El cambio no se registro");
+        }
+        //return registro;
+    }
+    
+    private synchronized void doCallbacks( ) throws RemoteException{
+        for (int i = 0; i < usuarioCllbck.size(); i++) {
+            System.out.println("doing "+ i +"-th callback\n");
+            AdministradorBCallbackInt nextClient = (AdministradorBCallbackInt) usuarioCllbck.get(i);
+            UsuarioB get = usuariosB.get(usuariosB.size()-1);
+            String cadena=get.getRol()+" "+get.getNombre()+" "+get.getApellidos();
+            nextClient.notificarIngresoServidor(cadena);
+        } // for
+    } // function
 
+    
 }
