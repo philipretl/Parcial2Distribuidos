@@ -20,10 +20,10 @@ import sop_rmi.*;
  * @author philipretl
  */
 public class GuiAdminA extends javax.swing.JFrame {
-    ConexionA loginA;
-    ServidorAInt srvA;
-    AdministradorA adminA;
-    String antiguo;
+    private ConexionA loginA;
+    private ServidorAInt srvA;
+    private AdministradorA adminA;
+    private String antiguo;
     /**
      * Creates new form GuiCliente
      */

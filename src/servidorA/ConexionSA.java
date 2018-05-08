@@ -23,7 +23,7 @@ public class ConexionSA extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    String cadena;
+    private String cadena;
     public ConexionSA() {
         initComponents();
         cadena="";

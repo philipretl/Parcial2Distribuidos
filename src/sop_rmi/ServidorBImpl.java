@@ -28,16 +28,16 @@ import servidorB.UtilidadesRegistroCB;
 public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,GestionClienteInt{
     //Variables GestionAdministrador
     //Int la interfaz que implementa.
-    ArrayList<AdministradorB> admins;
-    ArrayList<UsuarioB> usuariosB;
-    ArrayList<AdministradorBCallbackInt> usuarioCllbck;
-    ImplTextoUsuarioB txtU;
-    ImplTextoAdministradorB txtA;
-    ConexionSB gui;
-    String ip;
-    int puerto;
-    ServidorAInt srvA;
-    GestionClienteInt gestionCliente;
+    private ArrayList<AdministradorB> admins;
+    private ArrayList<UsuarioB> usuariosB;
+    private ArrayList<AdministradorBCallbackInt> usuarioCllbck;
+    private ImplTextoUsuarioB txtU;
+    private ImplTextoAdministradorB txtA;
+    private ConexionSB gui;
+    private String ip;
+    private int puerto;
+    private ServidorAInt srvA;
+    
     
     
     
@@ -127,7 +127,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
 
     @Override
     public boolean modificarCredenciales(String antiguo, String login, String pass, int opcion) throws RemoteException {
-         gui.consola("$ serverAcceso: Modificar Credenciales");
+        gui.consola("$ serverAcceso: Modificar Credenciales");
         boolean flag=false;
         
         for (int i = 0; i < admins.size(); i++) {

@@ -18,8 +18,8 @@ import sop_rmi.GestionClienteInt;
  */
 public class GuiCliente extends javax.swing.JFrame {
     
-    GestionClienteInt srvB;
-    ConexionC loginC;
+    private GestionClienteInt srvB;
+    private ConexionC loginC;
     
 
     /**

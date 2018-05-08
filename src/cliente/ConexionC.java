@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author philipretl
  */
 public class ConexionC extends javax.swing.JFrame {
-    GuiCliente gui;
+    private GuiCliente gui;
     /**
      * Creates new form Login
      */

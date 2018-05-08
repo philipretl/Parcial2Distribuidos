@@ -29,10 +29,10 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     SolicitudServidorAInt srvA;
     private UsuarioB usrb;
     private UsuarioB usrS;
-    String ip;
+    private String ip;
     int puerto;
-    ArrayList<String> meses;
-    ConexionSB gui;
+    private ArrayList<String> meses;
+    private ConexionSB gui;
     
     public GestionClienteImpl(String ip,int puerto,ConexionSB gui) throws RemoteException{
         super();

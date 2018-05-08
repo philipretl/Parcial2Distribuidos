@@ -21,12 +21,12 @@ import servidorA.ConexionSA;
  * @author philipretl
  */
 public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
-    ArrayList<AdministradorA> admins;
-    ArrayList<UsuarioA> usuariosA;
+    private ArrayList<AdministradorA> admins;
+    private ArrayList<UsuarioA> usuariosA;
     
-    ImplTextoUsuarioA txtA;
-    ImplTextoAdministradorA txtAdm;
-    ConexionSA gui;
+    private ImplTextoUsuarioA txtA;
+    private ImplTextoAdministradorA txtAdm;
+    private ConexionSA gui;
     
 
     

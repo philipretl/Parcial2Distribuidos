@@ -20,10 +20,12 @@ import sop_rmi.*;
  * @author philipretl
  */
 public class GuiAdminB extends javax.swing.JFrame {
-    ConexionB loginB;
-    ServidorBInt srvB;
-    AdministradorB adminB;
-    AdministradorBCallbackInt objcllbck;
+    private ConexionB loginB;
+    private ServidorBInt srvB;
+    private AdministradorB adminB;
+    private AdministradorBCallbackInt objcllbck;
+    private boolean flagLogin;
+    private String datosTemp;
     /**
      * Creates new form GuiCliente
      */
@@ -32,6 +34,8 @@ public class GuiAdminB extends javax.swing.JFrame {
         loginB= new ConexionB(this);  
         loginB.setVisible(true);
         adminB = new AdministradorB();
+        flagLogin=false;
+        datosTemp="";
     }
     
     
@@ -328,7 +332,7 @@ public class GuiAdminB extends javax.swing.JFrame {
     public boolean conexion(String ip,String puerto){
         boolean flag=true;
         
-        System.out.println("ip: "+ ip + "puerto: " + puerto );
+        //System.out.println("ip: "+ ip + "puerto: " + puerto );
         
         try{
             int numPuertoRMIRegistry=0;
@@ -349,13 +353,20 @@ public class GuiAdminB extends javax.swing.JFrame {
         if(srvB==null){
             flag = false;
         }
-    
+        
+           
+        
+        
         return flag;
     }
     
     public void fijarCambios(String datos){
-        txtConsolaCon.setText("");
-        txtConsolaCon.setText(datos);
+        if(flagLogin){
+            txtConsolaCon.setText("");
+            txtConsolaCon.setText(datos);
+        }else{
+            datosTemp=datos;
+        }
     }
          private void activarGenerales(){
         txtConsola.setText("$ Opciones generales activadas");
@@ -436,9 +447,12 @@ public class GuiAdminB extends javax.swing.JFrame {
                     txtPass.setText("");
                     
                 }else{// ingreso al sistema
-                   activarGenerales();
-                   btnIngresar1.setEnabled(false);
-                   txtConsola.setText("$ Ingreso al sistema exitoso!");
+                    activarGenerales();
+                    flagLogin=true;
+                    txtConsolaCon.setText(datosTemp);
+                    System.out.println("datosTemp"+datosTemp);
+                    btnIngresar1.setEnabled(false);
+                    txtConsola.setText("$ Ingreso al sistema exitoso!");
                    
                 
                 }
@@ -450,6 +464,7 @@ public class GuiAdminB extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         txtConsola.setText("$ Saliendo del sistema....");
+        txtConsolaCon.setText("");
         desactivarGenerales();  
         activarIniciales();
           
@@ -616,7 +631,7 @@ public class GuiAdminB extends javax.swing.JFrame {
         for (int i = 0; i < usuarios.size(); i++) {
             cadena= cadena + usuarios.get(i).getCodigo() + "        " +usuarios.get(i).getHora()+"        "+usuarios.get(i).getFecha()+"\n";
         }
-        
+        cadena = cadena + "\n$ Cantidad de usuarios al interior de las intalaciones: " + usuarios.size();
         txtConsola.setText(cadena);
     }//GEN-LAST:event_btnConsultarActionPerformed
 

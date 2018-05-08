@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author philipretl
  */
 public class ConexionB extends javax.swing.JFrame {
-    GuiAdminB gui;
+    private GuiAdminB gui;
     /**
      * Creates new form Login
      */
