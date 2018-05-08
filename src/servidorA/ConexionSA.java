@@ -96,7 +96,6 @@ public class ConexionSA extends javax.swing.JFrame {
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
-        txtIp.setText("localhost");
         txtIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIpActionPerformed(evt);
@@ -152,7 +151,7 @@ public class ConexionSA extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

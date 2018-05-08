@@ -79,14 +79,13 @@ public class ConexionB extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Direccion Ip del Rmi.Registry ");
 
-        txtIp.setText("localhost");
         txtIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIpActionPerformed(evt);
@@ -94,8 +93,6 @@ public class ConexionB extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Puerto del Rmi.Registry");
-
-        txtPuerto.setText("2023");
 
         btnConectar.setBackground(new java.awt.Color(106, 160, 213));
         btnConectar.setText("Conectar");
