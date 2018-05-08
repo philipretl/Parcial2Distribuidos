@@ -12,15 +12,15 @@ import java.io.Serializable;
  *
  * @author Mauricio
  */
-public class AdministradorA implements Serializable{
+public class AdministradorADTO implements Serializable{
     
     private String login;
     private String clave;
 
-    public AdministradorA() {
+    public AdministradorADTO() {
     }
 
-    public AdministradorA(String login, String clave) {
+    public AdministradorADTO(String login, String clave) {
         this.login = login;
         this.clave = clave;
     }

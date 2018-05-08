@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import AdministradorB.UsuarioB;
+import AdministradorB.UsuarioBDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class ImplTextoUsuarioB implements InterfazUsuarioBDAO{
 
     @Override
-    public ArrayList<UsuarioB> getUsuarios() throws FileNotFoundException, IOException {
-         ArrayList<UsuarioB> usuarios=new ArrayList<>();
-        UsuarioB usr;
+    public ArrayList<UsuarioBDTO> getUsuarios() throws FileNotFoundException, IOException {
+         ArrayList<UsuarioBDTO> usuarios=new ArrayList<>();
+        UsuarioBDTO usr;
         String cadena;
         
         FileReader f = new FileReader("usuariosB.txt");
@@ -33,7 +33,7 @@ public class ImplTextoUsuarioB implements InterfazUsuarioBDAO{
             String[] split1=cadena.split("#");
             for (int i = 0; i < split1.length; i++) {
                 String[] split2 = split1[i].split("/");
-                usr=new UsuarioB(split2[0],split2[1],split2[2],split2[3],split2[4],split2[5]);
+                usr=new UsuarioBDTO(split2[0],split2[1],split2[2],split2[3],split2[4],split2[5]);
                 usuarios.add(usr);
             //System.out.println(cadena);
             }
@@ -44,7 +44,7 @@ public class ImplTextoUsuarioB implements InterfazUsuarioBDAO{
     }
 
     @Override
-    public void guardarUsuarios(ArrayList<UsuarioB> usuarios) throws IOException {
+    public void guardarUsuarios(ArrayList<UsuarioBDTO> usuarios) throws IOException {
         File archivo = new File("usuariosB.txt");
         BufferedWriter bw;
         String linea;

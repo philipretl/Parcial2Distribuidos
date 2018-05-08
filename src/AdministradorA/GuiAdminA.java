@@ -22,7 +22,7 @@ import sop_rmi.*;
 public class GuiAdminA extends javax.swing.JFrame {
     private ConexionA loginA;
     private ServidorAInt srvA;
-    private AdministradorA adminA;
+    private AdministradorADTO adminA;
     private String antiguo;
     /**
      * Creates new form GuiCliente
@@ -31,7 +31,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         initComponents();        
         loginA= new ConexionA(this);  
         loginA.setVisible(true);
-        adminA = new AdministradorA();
+        adminA = new AdministradorADTO();
         //radiobuttons modificar
         rbtnCodigo.setVisible(!true);
         rbtnNombres.setVisible(!true);
@@ -987,7 +987,7 @@ public class GuiAdminA extends javax.swing.JFrame {
     
     private String concatenarCodigos() {
         String cadena="$ Codigos    nombres    apellidos    rol \n";
-        ArrayList<UsuarioA> lista=null;
+        ArrayList<UsuarioADTO> lista=null;
         try {
             lista=srvA.consultarUsuarios();
         } catch (RemoteException ex) {
@@ -1034,18 +1034,18 @@ public class GuiAdminA extends javax.swing.JFrame {
             if(codigo.length()!=8){
                 txtConsola.setText("$ Error el codigo debe ser de 8 caracteres");
             }else{
-                UsuarioA user = null;
+                UsuarioADTO user = null;
                 switch(cbxRol.getSelectedIndex()){
                     case 0:
-                        user = new UsuarioA(nombres,apellidos,"Administrativo",codigo);
+                        user = new UsuarioADTO(nombres,apellidos,"Administrativo",codigo);
                         break;
                     
                     case 1:
-                        user = new UsuarioA(nombres,apellidos,"Profesor",codigo);
+                        user = new UsuarioADTO(nombres,apellidos,"Profesor",codigo);
                         break;
                         
                     case 2:
-                        user = new UsuarioA(nombres,apellidos,"Estudiante",codigo);
+                        user = new UsuarioADTO(nombres,apellidos,"Estudiante",codigo);
                         break;
                 
                 
@@ -1078,7 +1078,7 @@ public class GuiAdminA extends javax.swing.JFrame {
     private void modificar(){
         boolean flag=false;
         String nombres,codigo,apellidos;   
-        UsuarioA user = null;
+        UsuarioADTO user = null;
         
         
         
@@ -1087,7 +1087,7 @@ public class GuiAdminA extends javax.swing.JFrame {
         apellidos=txtApellidos.getText();
         
       
-        user= new UsuarioA();
+        user= new UsuarioADTO();
  
         if(apellidos.equals("") || nombres.equals("") || codigo.equals("")){
             txtConsola.setText("$ Error ninguno de los campos puede estar vacio");
@@ -1246,7 +1246,7 @@ public class GuiAdminA extends javax.swing.JFrame {
             }else{
                 lblCodigo.setEnabled(false);
                 txtCodigo.setEnabled(false);
-                UsuarioA user = srvA.solicitarUsuario(codigo);
+                UsuarioADTO user = srvA.solicitarUsuario(codigo);
                 antiguo=user.getCodigo();
                 rbtnCodigo.setVisible(true);
                 rbtnNombres.setVisible(true);

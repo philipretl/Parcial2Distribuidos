@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import AdministradorA.AdministradorA;
+import AdministradorA.AdministradorADTO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public interface InterfazAdministradorADAO {
     
-    public ArrayList<AdministradorA> getAdministradores() throws FileNotFoundException, IOException;
-    public void guardarAdministradores(ArrayList<AdministradorA> administradores) throws IOException;
+    public ArrayList<AdministradorADTO> getAdministradores() throws FileNotFoundException, IOException;
+    public void guardarAdministradores(ArrayList<AdministradorADTO> administradores) throws IOException;
     
 }

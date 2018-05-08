@@ -22,7 +22,7 @@ import sop_rmi.*;
 public class GuiAdminB extends javax.swing.JFrame {
     private ConexionB loginB;
     private ServidorBInt srvB;
-    private AdministradorB adminB;
+    private AdministradorBDTO adminB;
     private AdministradorBCallbackInt objcllbck;
     private boolean flagLogin;
     private String datosTemp;
@@ -33,7 +33,7 @@ public class GuiAdminB extends javax.swing.JFrame {
         initComponents();        
         loginB= new ConexionB(this);  
         loginB.setVisible(true);
-        adminB = new AdministradorB();
+        adminB = new AdministradorBDTO();
         flagLogin=false;
         datosTemp="";
     }
@@ -620,7 +620,7 @@ public class GuiAdminB extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        ArrayList<UsuarioB> usuarios = null;
+        ArrayList<UsuarioBDTO> usuarios = null;
         String cadena="Codigo         hora        fecha:Ingreso\n";
         try {
             usuarios=srvB.ConsultarUsuariosIngresados();

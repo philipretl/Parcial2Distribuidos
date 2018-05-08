@@ -5,9 +5,9 @@
  */
 package sop_rmi;
 
-import AdministradorA.UsuarioA;
-import AdministradorB.AdministradorB;
-import AdministradorB.UsuarioB;
+import AdministradorA.UsuarioADTO;
+import AdministradorB.AdministradorBDTO;
+import AdministradorB.UsuarioBDTO;
 import DAO.ImplTextoAdministradorB;
 import DAO.ImplTextoUsuarioA;
 import DAO.ImplTextoUsuarioB;
@@ -28,8 +28,8 @@ import servidorB.UtilidadesRegistroCB;
 public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,GestionClienteInt{
     //Variables GestionAdministrador
     //Int la interfaz que implementa.
-    private ArrayList<AdministradorB> admins;
-    private ArrayList<UsuarioB> usuariosB;
+    private ArrayList<AdministradorBDTO> admins;
+    private ArrayList<UsuarioBDTO> usuariosB;
     private ArrayList<AdministradorBCallbackInt> usuarioCllbck;
     private ImplTextoUsuarioB txtU;
     private ImplTextoAdministradorB txtA;
@@ -42,10 +42,10 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     
     
     //Variables GestionUsuario
-    private ArrayList<UsuarioB> usuarios;
+    private ArrayList<UsuarioBDTO> usuarios;
     //static ServidorAImpl srvA; servicio de manzano
-    private UsuarioB usrb;
-    private UsuarioB usrS;
+    private UsuarioBDTO usrb;
+    private UsuarioBDTO usrS;
     ArrayList<String> meses;
     
     
@@ -103,7 +103,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
   
     
     @Override
-    public boolean AccesoAdministrador(AdministradorB adminB) throws RemoteException {
+    public boolean AccesoAdministrador(AdministradorBDTO adminB) throws RemoteException {
         gui.consola("$ serverAcceso: Acceso Administrador");
         boolean flag = false;
         for (int i = 0; i < admins.size(); i++) {
@@ -115,7 +115,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     }
 
     @Override
-    public ArrayList<UsuarioB> ConsultarUsuariosIngresados() {
+    public ArrayList<UsuarioBDTO> ConsultarUsuariosIngresados() {
          gui.consola("$ serverAcceso: Consultar Usuarios Ingresados");
         try {
             usuariosB=txtU.getUsuarios();
@@ -181,7 +181,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
             registro=usuarioCllbck.add(objcllbck);
         }
         try {
-            UsuarioB get = usuariosB.get(usuariosB.size()-1);
+            UsuarioBDTO get = usuariosB.get(usuariosB.size()-1);
             String cadena="";
             cadena=get.getRol()+" "+get.getNombre()+" "+get.getApellidos();
             doCallbacks(cadena);
@@ -216,7 +216,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         }
         int retorno=0;
         Calendar calendario;
-        UsuarioA usr = solicitarUsuario(codigo);
+        UsuarioADTO usr = solicitarUsuario(codigo);
         
         //UsuarioA usr = null;
         if(usr==null){
@@ -235,7 +235,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
                 String fecha2=meses.get(calendario.get(Calendar.MONTH))+" de "+String.valueOf(calendario.get(Calendar.YEAR));
                 String fecha=fecha1+fecha2;
                 System.out.println(hora+fecha);
-                usrb=new UsuarioB(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
+                usrb=new UsuarioBDTO(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
                 usuarios.add(usrb);
                 String cadena="";
                 cadena=usrb.getRol()+" "+usrb.getNombre()+" "+usrb.getApellidos();
@@ -277,7 +277,7 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
         int retorno = 0;
         int pos=-1;
         
-        UsuarioA usr = solicitarUsuario(codigo);
+        UsuarioADTO usr = solicitarUsuario(codigo);
         if(usr==null){
             retorno=1;//usuario no existe
         }else{
@@ -308,13 +308,13 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     }
 
     @Override
-    public UsuarioB consultarUsuarioIngresado() throws RemoteException {
+    public UsuarioBDTO consultarUsuarioIngresado() throws RemoteException {
         gui.consola("$ serverAcceso: Consultar Usuario Ingresado");
         return usrb;
     }
 
     @Override
-    public UsuarioB consultarUsuarioSalida() throws RemoteException {
+    public UsuarioBDTO consultarUsuarioSalida() throws RemoteException {
         gui.consola("$ serverAcceso: Consultar Usuario Salida");
         return usrS;
     }
@@ -341,9 +341,9 @@ public class ServidorBImpl extends UnicastRemoteObject implements ServidorBInt,G
     }
     
     
-    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
+    public UsuarioADTO solicitarUsuario(String codigo) throws RemoteException {
         gui.consola("$ serverAcceso: Solicitar Usuario ");
-        UsuarioA usr = null;
+        UsuarioADTO usr = null;
         conexion();
         //gestionCliente.
         usr=srvA.solicitarUsuario(codigo);

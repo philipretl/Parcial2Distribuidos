@@ -5,7 +5,7 @@
  */
 package sop_rmi;
 
-import AdministradorA.UsuarioA;
+import AdministradorA.UsuarioADTO;
 import java.rmi.RemoteException;
 
 /**
@@ -13,5 +13,5 @@ import java.rmi.RemoteException;
  * @author philipretl
  */
 public interface SolicitudServidorAInt {
-    UsuarioA solicitarUsuario(String codigo) throws RemoteException;
+    UsuarioADTO solicitarUsuario(String codigo) throws RemoteException;
 }

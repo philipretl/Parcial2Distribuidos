@@ -21,8 +21,8 @@ import servidorA.ConexionSA;
  * @author philipretl
  */
 public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
-    private ArrayList<AdministradorA> admins;
-    private ArrayList<UsuarioA> usuariosA;
+    private ArrayList<AdministradorADTO> admins;
+    private ArrayList<UsuarioADTO> usuariosA;
     
     private ImplTextoUsuarioA txtA;
     private ImplTextoAdministradorA txtAdm;
@@ -50,7 +50,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
     }
     
     @Override
-    public boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException {
+    public boolean AccesoAdministrador(AdministradorADTO adminA) throws RemoteException {
         //System.out.println("$ server: Acceso a administrador" + adminA.getLogin() + adminA.getClave());
         gui.consola("$ serverGestion: Agregar Administrador");
         boolean flag = false;
@@ -64,7 +64,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
 
     
     @Override
-    public boolean ModificarUsuario(String viejo,UsuarioA user) throws RemoteException {
+    public boolean ModificarUsuario(String viejo,UsuarioADTO user) throws RemoteException {
         gui.consola("$ serverGestion: Modificar Usuario");
        boolean flag=false;
        int pos;
@@ -103,7 +103,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
     }
 
     @Override
-    public boolean RegistrarUsuario(UsuarioA user) throws RemoteException {
+    public boolean RegistrarUsuario(UsuarioADTO user) throws RemoteException {
         gui.consola("$ serverGestion: Registrar Usuario");
         boolean flag=false;
         int pos;
@@ -124,13 +124,13 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
     }
     
     @Override
-    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
+    public UsuarioADTO solicitarUsuario(String codigo) throws RemoteException {
         gui.consola("$ serverGestion: Solicitar Usuario");
-        UsuarioA user=null;
+        UsuarioADTO user=null;
         int pos;
         pos=buscarUsuario(codigo);
         if(pos!=-1){
-            user= new UsuarioA(usuariosA.get(pos).getNombre(),usuariosA.get(pos).getApellidos(),usuariosA.get(pos).getRol(),usuariosA.get(pos).getCodigo());
+            user= new UsuarioADTO(usuariosA.get(pos).getNombre(),usuariosA.get(pos).getApellidos(),usuariosA.get(pos).getRol(),usuariosA.get(pos).getCodigo());
         
         }
         
@@ -196,7 +196,7 @@ public class ServidorAImpl extends UnicastRemoteObject implements ServidorAInt {
     }
 
     @Override
-    public ArrayList<UsuarioA> consultarUsuarios() throws RemoteException {
+    public ArrayList<UsuarioADTO> consultarUsuarios() throws RemoteException {
         gui.consola("$ serverGestion: consultar Usuarios");
         return usuariosA;
     }

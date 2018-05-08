@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import AdministradorA.AdministradorA;
+import AdministradorA.AdministradorADTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
 
     @Override
-    public ArrayList<AdministradorA> getAdministradores() throws FileNotFoundException, IOException {
-        ArrayList<AdministradorA> administradores=new ArrayList<>();
-        AdministradorA adm;
+    public ArrayList<AdministradorADTO> getAdministradores() throws FileNotFoundException, IOException {
+        ArrayList<AdministradorADTO> administradores=new ArrayList<>();
+        AdministradorADTO adm;
         String cadena;
         
         FileReader f = new FileReader("administradoresA.txt");
@@ -33,7 +33,7 @@ public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
             String[] split1=cadena.split("#");
             for (int i = 0; i < split1.length; i++) {
                 String[] split2 = split1[i].split("/");
-                adm=new AdministradorA(split2[0],split2[1]);
+                adm=new AdministradorADTO(split2[0],split2[1]);
                 administradores.add(adm);
             //System.out.println(cadena);
             }
@@ -44,7 +44,7 @@ public class ImplTextoAdministradorA implements InterfazAdministradorADAO{
     }
 
     @Override
-    public void guardarAdministradores(ArrayList<AdministradorA> administradores) throws IOException {
+    public void guardarAdministradores(ArrayList<AdministradorADTO> administradores) throws IOException {
         File archivo = new File("administradoresA.txt");
         BufferedWriter bw;
         String linea;

@@ -5,8 +5,8 @@
  */
 package sop_rmi;
 
-import AdministradorA.UsuarioA;
-import AdministradorB.UsuarioB;
+import AdministradorA.UsuarioADTO;
+import AdministradorB.UsuarioBDTO;
 import DAO.ImplTextoUsuarioB;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -24,11 +24,11 @@ import servidorB.ConexionSB;
 public class GestionClienteImpl extends UnicastRemoteObject implements GestionClienteInt{
     
     //private int semaforo;
-    private ArrayList<UsuarioB> usuarios;
+    private ArrayList<UsuarioBDTO> usuarios;
     //static SolicitudServidorInt srvA;
     SolicitudServidorAInt srvA;
-    private UsuarioB usrb;
-    private UsuarioB usrS;
+    private UsuarioBDTO usrb;
+    private UsuarioBDTO usrS;
     private String ip;
     int puerto;
     private ArrayList<String> meses;
@@ -55,7 +55,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         }
         int retorno=0;
         Calendar calendario;
-        UsuarioA usr = conexionServidorA(codigo);
+        UsuarioADTO usr = conexionServidorA(codigo);
         
         //UsuarioA usr = null;
         if(usr==null){
@@ -74,7 +74,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
                 String fecha2=meses.get(calendario.get(Calendar.MONTH))+" de "+String.valueOf(calendario.get(Calendar.YEAR));
                 String fecha=fecha1+fecha2;
                 System.out.println(hora+fecha);
-                usrb=new UsuarioB(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
+                usrb=new UsuarioBDTO(usr.getNombre(),usr.getApellidos(),usr.getRol(),usr.getCodigo(),hora,fecha);
                 usuarios.add(usrb);
             
                 ImplTextoUsuarioB atxt= new ImplTextoUsuarioB();
@@ -105,7 +105,7 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         int retorno = 0;
         int pos=-1;
         
-        UsuarioA usr = conexionServidorA(codigo);
+        UsuarioADTO usr = conexionServidorA(codigo);
         if(usr==null){
             retorno=1;//usuario no existe
         }else{
@@ -139,15 +139,15 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
         usuarios=usuariosB.getUsuarios();
     }
     
-    public UsuarioA conexionServidorA(String codigo) throws RemoteException{
-        UsuarioA usuario;
+    public UsuarioADTO conexionServidorA(String codigo) throws RemoteException{
+        UsuarioADTO usuario;
         usuario=srvA.solicitarUsuario(codigo);
         return usuario;
     }
     
-    public UsuarioA solicitarUsuario(String codigo) throws RemoteException {
+    public UsuarioADTO solicitarUsuario(String codigo) throws RemoteException {
         //gui.consola("$ serverAcceso: Solicitar Usuario ");
-        UsuarioA usr = null;
+        UsuarioADTO usr = null;
         
         //gestionCliente.
         usr=srvA.solicitarUsuario(codigo);
@@ -156,13 +156,13 @@ public class GestionClienteImpl extends UnicastRemoteObject implements GestionCl
     }
 
     @Override
-    public UsuarioB consultarUsuarioIngresado() throws RemoteException {
+    public UsuarioBDTO consultarUsuarioIngresado() throws RemoteException {
          gui.consola("$ serverAcceso: Consultar Usuario Ingresado");
         return usrb;
     }
 
     @Override
-    public UsuarioB consultarUsuarioSalida() throws RemoteException {
+    public UsuarioBDTO consultarUsuarioSalida() throws RemoteException {
         gui.consola("$ serverAcceso: Consultar Usuario Salida");
         return usrS;
     }

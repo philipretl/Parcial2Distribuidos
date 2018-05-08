@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdministradorA;
+package AdministradorB;
 
 import java.io.Serializable;
 
@@ -11,21 +11,25 @@ import java.io.Serializable;
  *
  * @author Mauricio
  */
-public class UsuarioA implements Serializable{
+public class UsuarioBDTO implements Serializable{
     
     private String nombre;
     private String apellidos;
     private String rol;
     private String codigo;
+    private String hora;
+    private String fecha;
 
-    public UsuarioA() {
+    public UsuarioBDTO() {
     }
 
-    public UsuarioA(String nombre, String apellidos, String rol, String codigo) {
+    public UsuarioBDTO(String nombre, String apellidos, String rol, String codigo, String hora, String fecha) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.rol = rol;
         this.codigo = codigo;
+        this.hora = hora;
+        this.fecha = fecha;
     }
 
     public String getNombre() {
@@ -58,6 +62,22 @@ public class UsuarioA implements Serializable{
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
     

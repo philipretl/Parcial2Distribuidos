@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import AdministradorA.UsuarioA;
+import AdministradorA.UsuarioADTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
 public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
 
     @Override
-    public ArrayList<UsuarioA> getUsuarios() throws FileNotFoundException, IOException{
+    public ArrayList<UsuarioADTO> getUsuarios() throws FileNotFoundException, IOException{
         
-        ArrayList<UsuarioA> usuarios=new ArrayList<>();
-        UsuarioA usr;
+        ArrayList<UsuarioADTO> usuarios=new ArrayList<>();
+        UsuarioADTO usr;
         String cadena;
         
         FileReader f = new FileReader("usuariosA.txt");
@@ -34,7 +34,7 @@ public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
             String[] split1=cadena.split("#");
             for (int i = 0; i < split1.length; i++) {
                 String[] split2 = split1[i].split("/");
-                usr=new UsuarioA(split2[0],split2[1],split2[2],split2[3]);
+                usr=new UsuarioADTO(split2[0],split2[1],split2[2],split2[3]);
                 usuarios.add(usr);
             }
             
@@ -47,7 +47,7 @@ public class ImplTextoUsuarioA implements InterfazUsuarioADAO{
         
 
     @Override
-    public void guardarUsuarios(ArrayList<UsuarioA> usuarios) throws IOException{
+    public void guardarUsuarios(ArrayList<UsuarioADTO> usuarios) throws IOException{
         
         File archivo = new File("usuariosA.txt");
         BufferedWriter bw;

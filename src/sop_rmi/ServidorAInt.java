@@ -15,12 +15,12 @@ import java.util.ArrayList;
  * @author Mauricio
  */
 public interface ServidorAInt extends Remote{
-    boolean AccesoAdministrador(AdministradorA adminA) throws RemoteException;
-    boolean RegistrarUsuario(UsuarioA user) throws RemoteException;
-    boolean ModificarUsuario(String viejo,UsuarioA user) throws RemoteException;
+    boolean AccesoAdministrador(AdministradorADTO adminA) throws RemoteException;
+    boolean RegistrarUsuario(UsuarioADTO user) throws RemoteException;
+    boolean ModificarUsuario(String viejo,UsuarioADTO user) throws RemoteException;
     boolean BorrarUsuario(String codigo) throws RemoteException;
-    UsuarioA solicitarUsuario(String codigo) throws RemoteException;
+    UsuarioADTO solicitarUsuario(String codigo) throws RemoteException;
     int buscarUsuario(String codigo) throws RemoteException;
-    ArrayList<UsuarioA> consultarUsuarios() throws RemoteException;
+    ArrayList<UsuarioADTO> consultarUsuarios() throws RemoteException;
     boolean modificarCredenciales(String antiguo,String login, String pass, int opcion) throws RemoteException;
 }

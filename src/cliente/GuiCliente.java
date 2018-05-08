@@ -5,7 +5,7 @@
  */
 package cliente;
 
-import AdministradorB.UsuarioB;
+import AdministradorB.UsuarioBDTO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -351,7 +351,7 @@ public class GuiCliente extends javax.swing.JFrame {
                         break;
                     case 3:
                         String cadena="$ Salida concedida\n";
-                        UsuarioB usuarioSalida = null;
+                        UsuarioBDTO usuarioSalida = null;
                     {
                         try {
                             usuarioSalida = srvB.consultarUsuarioSalida();
@@ -401,7 +401,7 @@ public class GuiCliente extends javax.swing.JFrame {
                         break;
                     case 3:
                         String cadena="$ Acceso concedido\n";
-                        UsuarioB usuarioIngresado = null;
+                        UsuarioBDTO usuarioIngresado = null;
                     {
                         try {
                             usuarioIngresado = srvB.consultarUsuarioIngresado();
